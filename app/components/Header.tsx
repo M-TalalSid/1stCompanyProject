@@ -37,44 +37,6 @@ export default function Header() {
           <nav className="hidden lg:flex items-center space-x-12">
             <DropdownMenu>
               <DropdownMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
-                Women
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-                <DropdownMenuItem>
-                  <Link href="/women/dresses" className="w-full">
-                    Dresses
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/women/tops" className="w-full">
-                    Tops & Blouses
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/women/bottoms" className="w-full">
-                    Bottoms
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/women/outerwear" className="w-full">
-                    Outerwear
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/women/shoes" className="w-full">
-                    Shoes
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/women/bags" className="w-full">
-                    Bags
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
                 Men
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
@@ -111,44 +73,15 @@ export default function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
-                Kids
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-                <DropdownMenuItem>
-                  <Link href="/kids/girls" className="w-full">
-                    Girls (2-14 years)
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/kids/boys" className="w-full">
-                    Boys (2-14 years)
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/kids/baby-girls" className="w-full">
-                    Baby Girls (0-24 months)
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/kids/baby-boys" className="w-full">
-                    Baby Boys (0-24 months)
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/kids/shoes" className="w-full">
-                    Kids Shoes
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              <Link href="/sale" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+                Sale
+              </Link>
 
-            <Link href="/accessories" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
-              Accessories
+            <Link href="/about" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+              About
             </Link>
-            <Link href="/sale" className="text-rose-600 hover:text-rose-700 transition-colors font-semibold">
-              Sale
+            <Link href="/contact" className="text-gray-700 hover:text-rose-600 transition-colors font-semibold">
+              Contact
             </Link>
           </nav>
 
