@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Star, Heart, Timer } from "lucide-react"
 import { useWishlist } from "../context/WishlistContext"
 import { useToast } from "@/hooks/use-toast"
+import SpinnerLoader from "../loader/page"
 
 const saleProducts = [
   {
@@ -127,6 +128,13 @@ const saleProducts = [
 ]
 
 export default function SalePage() {
+  const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      const timeout = setTimeout(() => setLoading(false), 1500);
+      return () => clearTimeout(timeout);
+    }, []);
+
   const [sortBy, setSortBy] = useState("discount")
   const [filteredProducts, setFilteredProducts] = useState(saleProducts)
   const { addItem: addToWishlist, isInWishlist } = useWishlist()
@@ -172,6 +180,7 @@ export default function SalePage() {
       })
     }
   }
+  if (loading) return <SpinnerLoader />;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-50 to-white">

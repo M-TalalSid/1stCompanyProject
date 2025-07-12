@@ -1,10 +1,23 @@
+
+"use client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Heart, Users, Award, Leaf, Globe, Star } from "lucide-react"
 import Link from "next/link"
+import { useEffect, useState } from "react"
+import SpinnerLoader from "../loader/page"
 
 export default function AboutPage() {
+  const [loading, setLoading] = useState(true);
+    
+      useEffect(() => {
+        const timeout = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(timeout);
+      }, []);
+      
+      if (loading) return <SpinnerLoader />;
+    
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-50 to-white">
       {/* Hero Section */}

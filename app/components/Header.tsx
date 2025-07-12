@@ -35,44 +35,10 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-12">
-            <DropdownMenu>
-              <DropdownMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+              <Link href="/men"  className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
                 Men
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-                <DropdownMenuItem>
-                  <Link href="/men/shirts" className="w-full">
-                    Shirts
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/men/pants" className="w-full">
-                    Pants & Trousers
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/men/suits" className="w-full">
-                    Suits & Blazers
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/men/outerwear" className="w-full">
-                    Outerwear
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/men/shoes" className="w-full">
-                    Shoes
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/men/accessories" className="w-full">
-                    Accessories
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
+              </Link>
+              
               <Link href="/sale" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
                 Sale
               </Link>
