@@ -17,7 +17,7 @@ export default function CartPage() {
       <div className="container mx-auto px-4 py-16 text-center">
         <ShoppingBag className="h-24 w-24 mx-auto text-gray-300 mb-6" />
         <h1 className="text-3xl font-playfair font-light mb-4">Your Cart is Empty</h1>
-        <p className="text-gray-600 mb-8 text-lg">Discover our latest collections and add items to your cart.</p>
+        <p className="text-gray-600 mb-8 text-lg">Discover our Latest Collections and Add Items to your Cart.</p>
         <Button asChild size="lg" className="bg-rose-600 hover:bg-rose-700">
           <Link href="/products">
             Start Shopping
@@ -117,7 +117,7 @@ export default function CartPage() {
 
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between">
-                  <span>Subtotal ({items.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
+                  <span>Subtotal ({items.reduce((sum, item) => sum + item.quantity, 0)} Items)</span>
                   <span className="font-medium">${total.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
@@ -137,7 +137,7 @@ export default function CartPage() {
 
               {total < 100 && (
                 <div className="bg-rose-50 p-4 rounded-xl mb-6 border border-rose-200">
-                  <p className="text-sm text-rose-800">Add ${(100 - total).toFixed(2)} more for free shipping!</p>
+                  <p className="text-sm text-rose-800">Add ${(100 - total).toFixed(2)} more for Free Shipping!</p>
                 </div>
               )}
 
@@ -158,7 +158,7 @@ export default function CartPage() {
               </div>
 
               <div className="mt-6 text-center">
-                <p className="text-sm text-gray-600">Secure checkout with SSL encryption</p>
+                <p className="text-sm text-gray-600">Secure Checkout with SSL Encryption</p>
               </div>
             </CardContent>
           </Card>

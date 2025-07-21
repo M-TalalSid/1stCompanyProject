@@ -44,20 +44,20 @@ export default function LoginPage() {
 
       if (success) {
         toast({
-          title: "Welcome back!",
+          title: "Welcome Back !",
           description: "You have been successfully logged in.",
         })
         router.push("/account")
       } else {
         toast({
-          title: "Login failed",
+          title: "Login Failed",
           description: "Invalid email or password. Please try again.",
           variant: "destructive",
         })
       }
     } catch (error) {
       toast({
-        title: "Login failed",
+        title: "Login Failed",
         description: "An error occurred. Please try again.",
         variant: "destructive",
       })

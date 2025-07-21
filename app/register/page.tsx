@@ -124,7 +124,7 @@ export default function RegisterPage() {
       <Card className="w-full max-w-md shadow-xl border-0">
         <CardHeader className="text-center space-y-4">
           <CardTitle className="text-3xl font-playfair font-light">Create Account</CardTitle>
-          <CardDescription className="text-lg">Join Luxe Fashion and start shopping</CardDescription>
+          <CardDescription className="text-lg">Join Luxe Fashion and Start Shopping</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <form onSubmit={handleSubmit} className="space-y-6">

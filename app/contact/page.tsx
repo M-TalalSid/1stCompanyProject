@@ -165,9 +165,9 @@ export default function ContactPage() {
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Available 24/7
                   <br />
-                  Instant support for
+                  Instant Support for
                   <br />
-                  urgent inquiries
+                  Urgent Inquiries
                 </p>
               </CardContent>
             </Card>
@@ -347,7 +347,7 @@ export default function ContactPage() {
               <Card className="shadow-xl border-0">
                 <CardHeader>
                   <CardTitle>Follow Us</CardTitle>
-                  <p className="text-gray-600">Stay connected for the latest updates and exclusive offers</p>
+                  <p className="text-gray-600">Stay connected for the Latest Updates and Exclusive Offers</p>
                 </CardHeader>
                 <CardContent>
                   <div className="flex space-x-4">

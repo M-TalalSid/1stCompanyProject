@@ -317,8 +317,8 @@ export default function SearchPage() {
                 <div className="text-gray-400 mb-4">
                   <Search className="h-16 w-16 mx-auto" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-                <p className="text-gray-600 mb-4">Try adjusting your search criteria or browse our categories</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">No Products Found</h3>
+                <p className="text-gray-600 mb-4">Try adjusting your search criteria or Browse our categories</p>
                 <Button onClick={clearAllFilters}>Clear Filters</Button>
               </div>
             ) : (
@@ -332,7 +332,7 @@ export default function SearchPage() {
                             <img
                               src={product.images[0] || "/placeholder.svg"}
                               alt={product.name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                             />
                           </div>
                         </Link>
