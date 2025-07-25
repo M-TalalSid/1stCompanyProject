@@ -63,7 +63,7 @@ export default function WishlistPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {items.map((item) => (
-          <Card key={item.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md">
+          <Card key={item.id} className="group hover:shadow-xl transition-all duration-200 border-0 shadow-md">
             <CardContent className="p-0">
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Link href={`/products/${item.id}`}>
@@ -71,7 +71,7 @@ export default function WishlistPage() {
                     src={item.image || "/placeholder.svg"}
                     alt={item.name}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-400"
                   />
                 </Link>
                 <Button

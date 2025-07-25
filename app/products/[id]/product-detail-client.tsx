@@ -286,17 +286,17 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               <div className="text-center">
                 <Truck className="h-6 w-6 text-rose-600 mx-auto mb-2" />
                 <div className="text-sm font-medium">Free Shipping</div>
-                <div className="text-xs text-gray-600">On orders over $100</div>
+                <div className="text-xs text-gray-600">On Orders Over $100</div>
               </div>
               <div className="text-center">
                 <Shield className="h-6 w-6 text-rose-600 mx-auto mb-2" />
                 <div className="text-sm font-medium">Secure Payment</div>
-                <div className="text-xs text-gray-600">SSL encrypted</div>
+                <div className="text-xs text-gray-600">SSL Encrypted</div>
               </div>
               <div className="text-center">
                 <RotateCcw className="h-6 w-6 text-rose-600 mx-auto mb-2" />
                 <div className="text-sm font-medium">Easy Returns</div>
-                <div className="text-xs text-gray-600">60-day policy</div>
+                <div className="text-xs text-gray-600">30-Day Policy</div>
               </div>
             </div>
           </div>
@@ -370,7 +370,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                   </div>
 
                   <div className="text-center py-8 text-gray-500">
-                    <p>Reviews feature coming soon!</p>
+                    <p>Reviews Feature Coming Soon !</p>
                     <p className="text-sm">Be the first to review this product.</p>
                   </div>
                 </CardContent>

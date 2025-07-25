@@ -123,7 +123,7 @@ export default function OrdersPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-4xl font-playfair font-light mb-2">Order History</h1>
-        <p className="text-gray-600 text-lg">Track and manage your orders</p>
+        <p className="text-gray-600 text-lg">Track and Manage your Orders</p>
       </div>
 
       {/* Filters and Search */}
@@ -275,7 +275,7 @@ export default function OrdersPage() {
         <Card className="text-center py-12 border-0 shadow-md">
           <CardContent>
             <Package className="h-24 w-24 mx-auto text-gray-300 mb-6" />
-            <h3 className="text-2xl font-semibold mb-4">No orders found</h3>
+            <h3 className="text-2xl font-semibold mb-4">No Orders Found</h3>
             <p className="text-gray-600 mb-6">
               {searchQuery || statusFilter !== "all"
                 ? "No orders match your current filters."

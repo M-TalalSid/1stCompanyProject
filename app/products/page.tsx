@@ -63,7 +63,7 @@ export default function ProductsPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-playfair font-bold text-gray-900 mb-4">All Products</h1>
-          <p className="text-xl text-gray-600 mb-6">Discover our complete collection of premium fashion pieces</p>
+          <p className="text-xl text-gray-600 mb-6">Discover our complete collection of Premium Fashion Pieces</p>
 
           {/* Filters and Sort */}
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
@@ -111,7 +111,7 @@ export default function ProductsPage() {
                       <img
                         src={product.images[0] || "/placeholder.svg"}
                         alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                       />
                     </div>
                   </Link>

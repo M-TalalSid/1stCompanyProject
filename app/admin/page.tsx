@@ -124,7 +124,7 @@ export default function AdminPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-4xl font-playfair font-light mb-2">Admin Dashboard</h1>
-        <p className="text-gray-600 text-lg">Manage your inventory and orders</p>
+        <p className="text-gray-600 text-lg">Manage your Inventory and Orders</p>
       </div>
 
       {/* Stats Cards */}
@@ -136,7 +136,7 @@ export default function AdminPage() {
                 <Package className="h-6 w-6 text-rose-600" />
               </div>
               <div>
-                <p className="text-2xl font-bold">247</p>
+                <p className="text-2xl font-bold">250</p>
                 <p className="text-sm text-gray-600">Total Products</p>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function AdminPage() {
                 <ShoppingCart className="h-6 w-6 text-blue-600" />
               </div>
               <div>
-                <p className="text-2xl font-bold">1,234</p>
+                <p className="text-2xl font-bold">500+</p>
                 <p className="text-sm text-gray-600">Total Orders</p>
               </div>
             </div>
@@ -164,7 +164,7 @@ export default function AdminPage() {
                 <Users className="h-6 w-6 text-emerald-600" />
               </div>
               <div>
-                <p className="text-2xl font-bold">5,678</p>
+                <p className="text-2xl font-bold">5K+</p>
                 <p className="text-sm text-gray-600">Total Customers</p>
               </div>
             </div>

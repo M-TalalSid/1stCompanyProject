@@ -146,7 +146,7 @@ export default function AccountPage() {
           <Card>
             <CardHeader>
               <CardTitle>Order History</CardTitle>
-              <CardDescription>View and track your recent orders</CardDescription>
+              <CardDescription>View and Track Your Recent Orders</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -202,8 +202,8 @@ export default function AccountPage() {
             <CardContent>
               <div className="text-center py-8">
                 <Heart className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Your wishlist is empty</h3>
-                <p className="text-gray-600 mb-4">Save items you love to buy them later</p>
+                <h3 className="text-lg font-semibold mb-2">Your Wishlist Is Empty</h3>
+                <p className="text-gray-600 mb-4">Save Items You Love To Buy Them Later</p>
                 <Button>Continue Shopping</Button>
               </div>
             </CardContent>
@@ -215,7 +215,7 @@ export default function AccountPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Account Security</CardTitle>
-                <CardDescription>Manage your password and security settings</CardDescription>
+                <CardDescription>Manage Your Password and Security Settings</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
@@ -240,13 +240,13 @@ export default function AccountPage() {
                   <CreditCard className="h-5 w-5" />
                   Payment Methods
                 </CardTitle>
-                <CardDescription>Manage your saved payment methods</CardDescription>
+                <CardDescription>Manage Your Saved Payment Methods</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="text-center py-8">
                   <CreditCard className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">No payment methods</h3>
-                  <p className="text-gray-600 mb-4">Add a payment method for faster checkout</p>
+                  <h3 className="text-lg font-semibold mb-2">No Payment Methods</h3>
+                  <p className="text-gray-600 mb-4">Add a Payment Method for Faster Checkout</p>
                   <Button>Add Payment Method</Button>
                 </div>
               </CardContent>
@@ -256,13 +256,13 @@ export default function AccountPage() {
           <Card>
             <CardHeader>
               <CardTitle>Account Actions</CardTitle>
-              <CardDescription>Manage your account</CardDescription>
+              <CardDescription>Manage Your Account</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex justify-between items-center">
                 <div>
                   <h3 className="font-semibold">Email Notifications</h3>
-                  <p className="text-sm text-gray-600">Receive updates about your orders and promotions</p>
+                  <p className="text-sm text-gray-600">Receive Updates About your Orders and Promotions</p>
                 </div>
                 <Button variant="outline">Manage</Button>
               </div>
@@ -270,7 +270,7 @@ export default function AccountPage() {
               <div className="flex justify-between items-center">
                 <div>
                   <h3 className="font-semibold">Download Your Data</h3>
-                  <p className="text-sm text-gray-600">Get a copy of your account data</p>
+                  <p className="text-sm text-gray-600">Get a Copy of your Account Data</p>
                 </div>
                 <Button variant="outline">Download</Button>
               </div>
@@ -278,7 +278,7 @@ export default function AccountPage() {
               <div className="flex justify-between items-center">
                 <div>
                   <h3 className="font-semibold text-red-600">Sign Out</h3>
-                  <p className="text-sm text-gray-600">Sign out of your account</p>
+                  <p className="text-sm text-gray-600">Sign Out of your Account</p>
                 </div>
                 <Button variant="destructive" onClick={logout}>
                   Sign Out
