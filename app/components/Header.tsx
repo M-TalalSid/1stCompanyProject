@@ -11,12 +11,17 @@ import { Search, ShoppingCart, User, Menu, Heart } from "lucide-react"
 import { useCart } from "../context/CartContext"
 import { useAuth } from "../context/AuthContext"
 import { useWishlist } from "../context/WishlistContext"
+import { useRouter } from "next/navigation"
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const { items } = useCart()
   const { user, logout } = useAuth()
   const { items: wishlistItems } = useWishlist()
+  const router = useRouter()
+
+
+
 
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)
   const wishlistCount = wishlistItems.length
@@ -35,13 +40,13 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-12">
-              <Link href="/men"  className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
-                Men
-              </Link>
-              
-              <Link href="/sale" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
-                Sale
-              </Link>
+            <Link href="/men" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+              Men
+            </Link>
+
+            <Link href="/sale" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+              Sale
+            </Link>
 
             <Link href="/about" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
               About
@@ -106,17 +111,24 @@ export default function Header() {
                         Admin Panel
                       </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        logout()
+                        router.push('/auth-pages/login')
+                      }}
+                    >
+                      Logout
+                    </DropdownMenuItem>
                   </>
                 ) : (
                   <>
                     <DropdownMenuItem>
-                      <Link href="/login" className="w-full">
+                      <Link href="/auth-pages/login" className="w-full">
                         Login
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link href="/register" className="w-full">
+                      <Link href="/auth-pages/register" className="w-full">
                         Register
                       </Link>
                     </DropdownMenuItem>

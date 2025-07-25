@@ -38,7 +38,6 @@ export default function AccountPage() {
   const [activeTab, setActiveTab] = useState("profile")
 
   if (!user) {
-    router.push("/login")
     return null
   }
 
