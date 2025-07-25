@@ -87,7 +87,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredProducts.map((product) => (
-              <Card key={product.id} className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg">
+              <Card key={product.id} className="group hover:shadow-2xl transition-all duration-200 border-0 shadow-lg">
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden">
                     <Link href={`/products/${product.id}`}>
@@ -95,7 +95,7 @@ export default function HomePage() {
                         <img
                           src={product.images[0] || "/placeholder.svg"}
                           alt={product.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-400"
                         />
                       </div>
                     </Link>

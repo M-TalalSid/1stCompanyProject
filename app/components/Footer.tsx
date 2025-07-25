@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">Fashion Forward</h3>
             <p className="text-gray-300 mb-4">
-              Your destination for premium, sustainable fashion. Quality clothing that makes a statement.
+              Your Destination for Premium, Sustainable Fashion. Quality Clothing that makes a Statement.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-300 hover:text-white">
@@ -95,7 +95,7 @@ export default function Footer() {
           {/* Newsletter */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Stay Updated</h4>
-            <p className="text-gray-300 mb-4">Subscribe for exclusive offers and new arrivals.</p>
+            <p className="text-gray-300 mb-4">Subscribe for Exclusive Offers and New Arrivals.</p>
             <div className="flex flex-col space-y-2">
               <input
                 type="email"
@@ -110,7 +110,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-300">
-          <p>&copy; 2024 Fashion Forward. All rights reserved.</p>
+          <p>&copy; 2024 Fashion Forward. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
