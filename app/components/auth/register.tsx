@@ -11,8 +11,8 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react"
-import { useAuth } from "../context/AuthContext"
 import { useToast } from "@/hooks/use-toast"
+import { useAuth } from "@/app/context/AuthContext"
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -26,7 +26,6 @@ export default function RegisterPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [agreeToTerms, setAgreeToTerms] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-
   const { register } = useAuth()
   const router = useRouter()
   const { toast } = useToast()
@@ -39,11 +38,16 @@ export default function RegisterPage() {
     }))
   }
 
+  const isPasswordValid = (password: string) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
+    return regex.test(password)
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+    console.log("Form submitted hogya")
 
-    // Validation
     if (
       !formData.firstName ||
       !formData.lastName ||
@@ -70,10 +74,10 @@ export default function RegisterPage() {
       return
     }
 
-    if (formData.password.length < 6) {
+    if (!isPasswordValid(formData.password)) {
       toast({
-        title: "Password too short",
-        description: "Password must be at least 6 characters long.",
+        title: "Weak password",
+        description: "Password must be at least 8 characters and include uppercase, lowercase, and a digit.",
         variant: "destructive",
       })
       setIsLoading(false)
@@ -90,7 +94,6 @@ export default function RegisterPage() {
       return
     }
 
-    // Simulate API call
     try {
       const fullName = `${formData.firstName} ${formData.lastName}`
       const success = await register(formData.email, formData.password, fullName)
@@ -100,7 +103,10 @@ export default function RegisterPage() {
           title: "Account created successfully!",
           description: "Welcome to Luxe Fashion. You are now logged in.",
         })
-        router.push("/account")
+        setTimeout(() => {
+        router.push('/auth-pages/login')
+      }, 500)
+
       } else {
         toast({
           title: "Registration failed",
@@ -315,7 +321,7 @@ export default function RegisterPage() {
 
           <div className="text-center">
             <span className="text-sm text-gray-600">Already have an account? </span>
-            <Link href="/login" className="text-sm text-rose-600 hover:text-rose-700 font-medium hover:underline">
+            <Link href="/auth-pages/login" className="text-sm text-rose-600 hover:text-rose-700 font-medium hover:underline">
               Sign in
             </Link>
           </div>

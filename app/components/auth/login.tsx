@@ -10,8 +10,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Eye, EyeOff, Mail, Lock } from "lucide-react"
-import { useAuth } from "../context/AuthContext"
 import { useToast } from "@/hooks/use-toast"
+import { useAuth } from "@/app/context/AuthContext"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -38,7 +38,6 @@ export default function LoginPage() {
       return
     }
 
-    // Simulate API call
     try {
       const success = await login(email, password)
 
@@ -47,7 +46,10 @@ export default function LoginPage() {
           title: "Welcome back!",
           description: "You have been successfully logged in.",
         })
-        router.push("/account")
+        setTimeout(() => {
+        router.push('/account')
+      }, 500)
+
       } else {
         toast({
           title: "Login failed",
@@ -175,12 +177,12 @@ export default function LoginPage() {
           <div className="text-center space-y-4">
             <div className="text-sm">
               <span className="text-gray-600">Don't have an account? </span>
-              <Link href="/register" className="text-rose-600 hover:text-rose-700 font-medium hover:underline">
+              <Link href="/auth-pages/register" className="text-rose-600 hover:text-rose-700 font-medium hover:underline">
                 Sign up
               </Link>
             </div>
             <div>
-              <Link href="/forgot-password" className="text-sm text-rose-600 hover:text-rose-700 hover:underline">
+              <Link href="/auth-pages/forgot" className="text-sm text-rose-600 hover:text-rose-700 hover:underline">
                 Forgot your password?
               </Link>
             </div>

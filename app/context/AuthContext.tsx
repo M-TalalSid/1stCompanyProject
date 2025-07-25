@@ -13,6 +13,8 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<boolean>
   register: (email: string, password: string, name: string) => Promise<boolean>
   logout: () => void
+  forgotPassword: (email: string) => Promise<{ success: boolean, error?: string }>
+  resetPassword: (token: string, password: string) => Promise<string>
   loading: boolean
 }
 
@@ -23,7 +25,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Check for stored user session
     const storedUser = localStorage.getItem("user")
     if (storedUser) {
       setUser(JSON.parse(storedUser))
@@ -31,36 +32,112 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(false)
   }, [])
 
+
+  // Login function to authenticate user
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      // In a real app, this would be an API call
-      const mockUser = { id: "1", email, name: "John Doe" }
-      setUser(mockUser)
-      localStorage.setItem("user", JSON.stringify(mockUser))
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) throw new Error(data.error || "Login failed")
+
+      const loggedUser = { id: data.userId, email, name: data.fullName }
+      setUser(loggedUser)
+      localStorage.setItem("user", JSON.stringify(loggedUser))
       return true
     } catch (error) {
+      console.error("Login error:", error)
       return false
     }
   }
-
+  
+  // Register function to create a new user
   const register = async (email: string, password: string, name: string): Promise<boolean> => {
     try {
-      // In a real app, this would be an API call
-      const mockUser = { id: "1", email, name }
-      setUser(mockUser)
-      localStorage.setItem("user", JSON.stringify(mockUser))
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, fullName: name }),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) throw new Error(data.error || "Registration failed")
+
+      const newUser = { id: data.userId, email, name }
+      setUser(newUser)
+      localStorage.setItem("user", JSON.stringify(newUser))
       return true
     } catch (error) {
+      console.error("Registration error:", error)
       return false
     }
   }
+  // Forgot password function to send reset link
+  const forgotPassword = async (email: string): Promise<{ success: boolean, error?: string }> => {
+  try {
+    const res = await fetch("/api/auth/forgot", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    })
 
-  const logout = () => {
+    const data = await res.json()
+
+    if (!res.ok) throw new Error(data.error || "Forgot password failed")
+
+    return { success: true }
+  } catch (error: any) {
+    console.error("Forgot Password error:", error)
+    return { success: false, error: error.message }
+  }
+}
+
+// Logout function to clear user session
+const logout = async (): Promise<boolean> => {
+  try {
+    const res = await fetch("/api/auth/logout", { method: "POST" })
+
+    if (!res.ok) throw new Error("Logout failed")
+
     setUser(null)
     localStorage.removeItem("user")
+    return true
+  } catch (error) {
+    console.error("Logout error:", error)
+    return false
+  }
+}
+
+// Reset password function to update user's password
+const resetPassword = async (token: string, password: string) => {
+    try {
+      const res = await fetch('/api/auth/resetpassword', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token, password }),
+      })
+
+      const data = await res.json()
+      return data.message || 'Something went wrong'
+    } catch (error) {
+      return 'Error resetting password'
+    }
   }
 
-  return <AuthContext.Provider value={{ user, login, register, logout, loading }}>{children}</AuthContext.Provider>
+
+  return (
+    <AuthContext.Provider value={{ user, login, register, logout,forgotPassword,resetPassword, loading }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export function useAuth() {
