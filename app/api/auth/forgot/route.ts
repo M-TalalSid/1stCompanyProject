@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     }
 
     const token = crypto.randomBytes(32).toString('hex')
-    const resetLink = `http://localhost:3000/resetpassword?token=${token}&email=${email}`
+    const resetLink = `http://localhost:3000/auth-pages/resetpassword?token=${token}&email=${email}`
 
     const resend = new Resend(process.env.RESEND_API_KEY)
     await resend.emails.send({
