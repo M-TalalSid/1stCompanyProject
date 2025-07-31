@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -12,6 +12,8 @@ import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Plus, Edit, Trash2, Package, Users, ShoppingCart, TrendingUp } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { useRouter } from "next/navigation"
+import { useAuth } from "../context/AuthContext"
 
 // Mock data
 const mockProducts = [
@@ -75,6 +77,26 @@ const mockOrders = [
 ]
 
 export default function AdminPage() {
+  const { callAdminApi } = useAuth()
+  const router = useRouter()
+
+   useEffect(() => {
+  async function fetchData() {
+    const result = await callAdminApi()
+    if (!result.success) {
+      console.warn("Access denied:", result.message)
+      router.push("/")  // Redirect non-admin users to home or login
+    } else {
+      console.log("Admin message:", result.message)
+    }
+  }
+
+  fetchData()
+}, [callAdminApi, router])
+
+
+
+  
   const [newProduct, setNewProduct] = useState({
     name: "",
     category: "",

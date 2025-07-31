@@ -23,5 +23,17 @@ export default {
       title: "Token Expires",
       type: "datetime",
     },
+    {
+      name: "role",
+      title: "Role",
+      type: "string",
+      options: {
+        list: [
+          { title: "Admin", value: "admin" },
+          { title: "User", value: "user" },
+        ],
+        layout: "radio",
+      },
+    },
   ],
 }

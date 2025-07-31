@@ -6,6 +6,7 @@ interface User {
   id: string
   email: string
   name: string
+  role: string 
 }
 
 interface AuthContextType {
@@ -15,6 +16,7 @@ interface AuthContextType {
   logout: () => void
   forgotPassword: (email: string) => Promise<{ success: boolean, error?: string }>
   resetPassword: (token: string, password: string) => Promise<string>
+  callAdminApi: () => Promise<{ success: boolean, message?: string }>
   loading: boolean
 }
 
@@ -46,7 +48,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       if (!res.ok) throw new Error(data.error || "Login failed")
 
-      const loggedUser = { id: data.userId, email, name: data.fullName }
+      const loggedUser = { id: data.userId, email, name: data.fullName , role: data.role}
       setUser(loggedUser)
       localStorage.setItem("user", JSON.stringify(loggedUser))
       return true
@@ -55,7 +57,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return false
     }
   }
-  
+
   // Register function to create a new user
   const register = async (email: string, password: string, name: string): Promise<boolean> => {
     try {
@@ -69,7 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       if (!res.ok) throw new Error(data.error || "Registration failed")
 
-      const newUser = { id: data.userId, email, name }
+      const newUser = { id: data.userId, email, name, role: data.role }
       setUser(newUser)
       localStorage.setItem("user", JSON.stringify(newUser))
       return true
@@ -80,42 +82,42 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
   // Forgot password function to send reset link
   const forgotPassword = async (email: string): Promise<{ success: boolean, error?: string }> => {
-  try {
-    const res = await fetch("/api/auth/forgot", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    })
+    try {
+      const res = await fetch("/api/auth/forgot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      })
 
-    const data = await res.json()
+      const data = await res.json()
 
-    if (!res.ok) throw new Error(data.error || "Forgot password failed")
+      if (!res.ok) throw new Error(data.error || "Forgot password failed")
 
-    return { success: true }
-  } catch (error: any) {
-    console.error("Forgot Password error:", error)
-    return { success: false, error: error.message }
+      return { success: true }
+    } catch (error: any) {
+      console.error("Forgot Password error:", error)
+      return { success: false, error: error.message }
+    }
   }
-}
 
-// Logout function to clear user session
-const logout = async (): Promise<boolean> => {
-  try {
-    const res = await fetch("/api/auth/logout", { method: "POST" })
+  // Logout function to clear user session
+  const logout = async (): Promise<boolean> => {
+    try {
+      const res = await fetch("/api/auth/logout", { method: "POST" })
 
-    if (!res.ok) throw new Error("Logout failed")
+      if (!res.ok) throw new Error("Logout failed")
 
-    setUser(null)
-    localStorage.removeItem("user")
-    return true
-  } catch (error) {
-    console.error("Logout error:", error)
-    return false
+      setUser(null)
+      localStorage.removeItem("user")
+      return true
+    } catch (error) {
+      console.error("Logout error:", error)
+      return false
+    }
   }
-}
 
-// Reset password function to update user's password
-const resetPassword = async (token: string, password: string) => {
+  // Reset password function to update user's password
+  const resetPassword = async (token: string, password: string) => {
     try {
       const res = await fetch('/api/auth/resetpassword', {
         method: 'POST',
@@ -132,9 +134,37 @@ const resetPassword = async (token: string, password: string) => {
     }
   }
 
+  
+ 
+  // Example of an admin-only API call
+  const callAdminApi = async (): Promise<{ success: boolean, message?: string }> => {
+  try {
+    const userData = localStorage.getItem("user")
+    if (!userData) throw new Error("User not found")
+
+    const parsedUser = JSON.parse(userData)
+
+    const res = await fetch("/api/auth/adminonly", {
+      method: "GET",
+      headers: {
+        Authorization: JSON.stringify(parsedUser)
+      }
+    })
+
+    const data = await res.json()
+
+    if (!res.ok) throw new Error(data.message || "Request failed")
+
+    return { success: true, message: data.message }
+  } catch (error: any) {
+    console.error("Admin API error:", error)
+    return { success: false, message: error.message }
+  }
+}
+
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout,forgotPassword,resetPassword, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, forgotPassword, resetPassword,callAdminApi, loading }}>
       {children}
     </AuthContext.Provider>
   )
