@@ -4,7 +4,7 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
+import { Button } from "../../components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -44,20 +44,20 @@ export default function LoginPage() {
 
       if (success) {
         toast({
-          title: "Welcome back!",
+          title: "Welcome Back !",
           description: "You have been successfully logged in.",
         })
         router.push("/account")
       } else {
         toast({
-          title: "Login failed",
+          title: "Login Failed",
           description: "Invalid email or password. Please try again.",
           variant: "destructive",
         })
       }
     } catch (error) {
       toast({
-        title: "Login failed",
+        title: "Login Failed",
         description: "An error occurred. Please try again.",
         variant: "destructive",
       })

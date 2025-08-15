@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -13,8 +13,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator"
 import { MapPin, Phone, Mail, Clock, MessageCircle, Send, Facebook, Twitter, Instagram, Youtube } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import SpinnerLoader from "../loader/page"
 
 export default function ContactPage() {
+   const [loading, setLoading] = useState(true);
+   
+      useEffect(() => {
+        const timeout = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(timeout);
+      }, []);
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -78,6 +86,7 @@ export default function ContactPage() {
 
     setIsSubmitting(false)
   }
+    if (loading) return <SpinnerLoader />;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -156,9 +165,9 @@ export default function ContactPage() {
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Available 24/7
                   <br />
-                  Instant support for
+                  Instant Support for
                   <br />
-                  urgent inquiries
+                  Urgent Inquiries
                 </p>
               </CardContent>
             </Card>
@@ -296,36 +305,7 @@ export default function ContactPage() {
 
             {/* Additional Information */}
             <div className="space-y-8">
-              {/* Store Hours */}
-              <Card className="shadow-xl border-0">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
-                    <Clock className="h-6 w-6 text-rose-600" />
-                    Store Hours
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Monday - Friday</span>
-                    <span className="text-gray-600">9:00 AM - 8:00 PM</span>
-                  </div>
-                  <Separator />
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Saturday</span>
-                    <span className="text-gray-600">10:00 AM - 6:00 PM</span>
-                  </div>
-                  <Separator />
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Sunday</span>
-                    <span className="text-gray-600">12:00 PM - 5:00 PM</span>
-                  </div>
-                  <Separator />
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Holidays</span>
-                    <span className="text-gray-600">Varies</span>
-                  </div>
-                </CardContent>
-              </Card>
+          
 
               {/* FAQ Quick Links */}
               <Card className="shadow-xl border-0">
@@ -367,7 +347,7 @@ export default function ContactPage() {
               <Card className="shadow-xl border-0">
                 <CardHeader>
                   <CardTitle>Follow Us</CardTitle>
-                  <p className="text-gray-600">Stay connected for the latest updates and exclusive offers</p>
+                  <p className="text-gray-600">Stay connected for the Latest Updates and Exclusive Offers</p>
                 </CardHeader>
                 <CardContent>
                   <div className="flex space-x-4">

@@ -6,8 +6,17 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Star, Heart, Truck, Shield, RotateCcw } from "lucide-react"
 import { getAllProducts } from "@/lib/products-database"
 import { useWishlist } from "./context/WishlistContext"
+import { useEffect, useState } from "react"
+import SpinnerLoader from "./loader/page"
 
 export default function HomePage() {
+  const [loading, setLoading] = useState(true);
+      
+        useEffect(() => {
+          const timeout = setTimeout(() => setLoading(false), 1500);
+          return () => clearTimeout(timeout);
+        }, []);
+        
   const { items: wishlistItems, addItem: addToWishlist, removeItem: removeFromWishlist } = useWishlist()
   const allProducts = getAllProducts()
 
@@ -31,6 +40,7 @@ export default function HomePage() {
       })
     }
   }
+        if (loading) return <SpinnerLoader />;
 
   return (
     <div className="min-h-screen">
@@ -77,7 +87,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredProducts.map((product) => (
-              <Card key={product.id} className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg">
+              <Card key={product.id} className="group hover:shadow-2xl transition-all duration-200 border-0 shadow-lg">
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden">
                     <Link href={`/products/${product.id}`}>
@@ -85,7 +95,7 @@ export default function HomePage() {
                         <img
                           src={product.images[0] || "/placeholder.svg"}
                           alt={product.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-400"
                         />
                       </div>
                     </Link>
@@ -145,68 +155,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4 text-gray-900">Shop by Category</h2>
-            <p className="text-xl text-gray-600">Explore our carefully curated collections</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
-              <CardContent className="p-0">
-                <div className="relative h-80 bg-gradient-to-br from-rose-200 to-rose-300">
-                  <div className="absolute inset-0 bg-[url('/placeholder.svg?height=400&width=300')] bg-cover bg-center opacity-20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <h3 className="text-3xl font-playfair font-bold mb-4">Women</h3>
-                      <p className="mb-6">Elegant & Contemporary</p>
-                      <Button variant="secondary" asChild>
-                        <Link href="/women">Shop Women</Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
-              <CardContent className="p-0">
-                <div className="relative h-80 bg-gradient-to-br from-blue-200 to-blue-300">
-                  <div className="absolute inset-0 bg-[url('/placeholder.svg?height=400&width=300')] bg-cover bg-center opacity-20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <h3 className="text-3xl font-playfair font-bold mb-4">Men</h3>
-                      <p className="mb-6">Sophisticated & Modern</p>
-                      <Button variant="secondary" asChild>
-                        <Link href="/men">Shop Men</Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
-              <CardContent className="p-0">
-                <div className="relative h-80 bg-gradient-to-br from-green-200 to-green-300">
-                  <div className="absolute inset-0 bg-[url('/placeholder.svg?height=400&width=300')] bg-cover bg-center opacity-20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <h3 className="text-3xl font-playfair font-bold mb-4">Kids</h3>
-                      <p className="mb-6">Playful & Comfortable</p>
-                      <Button variant="secondary" asChild>
-                        <Link href="/kids">Shop Kids</Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Features Section */}
       <section className="py-20 px-4 bg-white">

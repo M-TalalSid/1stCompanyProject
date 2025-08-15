@@ -1,3 +1,4 @@
+<<<<<<< HEAD:.history/app/men/cut-type/bell-bottom/page_20250815233110.tsx
 <<<<<<< HEAD:app/men/page.tsx
 =======
 "use client"
@@ -17,56 +18,118 @@ import { Star, Heart } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { useWishlist } from "@/app/context/WishlistContext"
 >>>>>>> e280f40 (Enhance UI and Add Some Feature):app/men/cut-type/bell-bottom/page.tsx
+=======
+"use client"
+>>>>>>> origin/main:app/men/page.tsx
 
-const menCategories = [
+import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Star, Heart } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
+import { useWishlist } from "../context/WishlistContext"
+import SpinnerLoader from "../loader/page"
+
+const pants = [
   {
-    name: "Shirts",
-    href: "/men/shirts",
-    image: "/placeholder.svg?height=400&width=300",
-    description: "Dress shirts and casual wear",
-    count: 42,
+    id: 311,
+    name: "Tailored Dress Pants",
+    price: 129.99,
+    originalPrice: 169.99,
+    image: "/placeholder.svg?height=500&width=400",
+    rating: 4.8,
+    reviews: 156,
+    colors: ["Navy", "Charcoal", "Black"],
+    sizes: ["30", "32", "34", "36", "38", "40"],
+    badge: "Professional",
+    category: "men",
   },
   {
-    name: "Pants & Trousers",
-    href: "/men/pants",
-    image: "/placeholder.svg?height=400&width=300",
-    description: "Formal and casual bottoms",
-    count: 35,
+    id: 312,
+    name: "Premium Denim Jeans",
+    price: 99.99,
+    originalPrice: 139.99,
+    image: "/placeholder.svg?height=500&width=400",
+    rating: 4.7,
+    reviews: 234,
+    colors: ["Dark Blue", "Light Blue", "Black"],
+    sizes: ["30", "32", "34", "36", "38", "40"],
+    badge: "Best Seller",
+    category: "men",
   },
   {
-    name: "Suits & Blazers",
-    href: "/men/suits",
-    image: "/placeholder.svg?height=400&width=300",
-    description: "Professional and formal wear",
-    count: 28,
+    id: 313,
+    name: "Chino Pants",
+    price: 79.99,
+    originalPrice: 99.99,
+    image: "/placeholder.svg?height=500&width=400",
+    rating: 4.6,
+    reviews: 123,
+    colors: ["Khaki", "Navy", "Olive"],
+    sizes: ["30", "32", "34", "36", "38", "40"],
+    badge: "Casual",
+    category: "men",
   },
   {
-    name: "Outerwear",
-    href: "/men/outerwear",
-    image: "/placeholder.svg?height=400&width=300",
-    description: "Jackets, coats, and sweaters",
-    count: 31,
+    id: 314,
+    name: "Athletic Joggers",
+    price: 59.99,
+    originalPrice: 79.99,
+    image: "/placeholder.svg?height=500&width=400",
+    rating: 4.5,
+    reviews: 89,
+    colors: ["Black", "Gray", "Navy"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    badge: "Comfort",
+    category: "men",
   },
   {
-    name: "Shoes",
-    href: "/men/shoes",
-    image: "/placeholder.svg?height=400&width=300",
-    description: "Dress shoes, sneakers, and boots",
-    count: 48,
+    id: 315,
+    name: "Cargo Shorts",
+    price: 49.99,
+    originalPrice: 69.99,
+    image: "/placeholder.svg?height=500&width=400",
+    rating: 4.4,
+    reviews: 67,
+    colors: ["Khaki", "Olive", "Black"],
+    sizes: ["30", "32", "34", "36", "38"],
+    badge: "Summer",
+    category: "men",
   },
   {
-    name: "Accessories",
-    href: "/men/accessories",
-    image: "/placeholder.svg?height=400&width=300",
-    description: "Ties, belts, and watches",
-    count: 26,
+    id: 316,
+    name: "Formal Tuxedo Pants",
+    price: 149.99,
+    originalPrice: 199.99,
+    image: "/placeholder.svg?height=500&width=400",
+    rating: 4.9,
+    reviews: 45,
+    colors: ["Black"],
+    sizes: ["30", "32", "34", "36", "38", "40"],
+    badge: "Formal",
+    category: "men",
   },
 ]
 
+<<<<<<< HEAD:.history/app/men/cut-type/bell-bottom/page_20250815233110.tsx
 <<<<<<< HEAD:app/men/page.tsx
 export default function MenPage() {
 =======
 export default function MenPantsPage() {
+=======
+export default function MenPantsPage() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timeout);
+  }, []);
+  
+>>>>>>> origin/main:app/men/page.tsx
   const [sortBy, setSortBy] = useState("featured")
   const [filteredProducts, setFilteredProducts] = useState(pants)
   const { addItem: addToWishlist, isInWishlist } = useWishlist()
@@ -109,14 +172,20 @@ export default function MenPantsPage() {
       })
     }
   }
+<<<<<<< HEAD:.history/app/men/cut-type/bell-bottom/page_20250815233110.tsx
 
 >>>>>>> e280f40 (Enhance UI and Add Some Feature):app/men/cut-type/bell-bottom/page.tsx
+=======
+  if (loading) return <SpinnerLoader />;
+
+>>>>>>> origin/main:app/men/page.tsx
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-gray-900/80" />
         <div className="absolute inset-0">
+<<<<<<< HEAD:.history/app/men/cut-type/bell-bottom/page_20250815233110.tsx
 <<<<<<< HEAD:app/men/page.tsx
           <Image src="/placeholder.svg?height=800&width=1600" alt="Men's Fashion" fill className="object-cover" />
         </div>
@@ -132,12 +201,20 @@ export default function MenPantsPage() {
           <h1 className="text-4xl md:text-6xl font-playfair font-light mb-4">Bell Bottom</h1>
           <p className="text-xl font-light">Premium bottoms for every occasion</p>
 >>>>>>> e280f40 (Enhance UI and Add Some Feature):app/men/cut-type/bell-bottom/page.tsx
+=======
+          <Image src="/placeholder.svg?height=600&width=1200" alt="Men's Pants" fill className="object-cover" />
+        </div>
+        <div className="relative z-10 text-center text-white px-4">
+          <h1 className="text-4xl md:text-6xl font-playfair font-light mb-4">Pants & Trousers</h1>
+          <p className="text-xl font-light">Premium bottoms for every occasion</p>
+>>>>>>> origin/main:app/men/page.tsx
         </div>
       </section>
 
-      {/* Categories Grid */}
-      <section className="py-20">
+      {/* Products Section */}
+      <section className="py-12">
         <div className="container mx-auto px-4">
+<<<<<<< HEAD:.history/app/men/cut-type/bell-bottom/page_20250815233110.tsx
 <<<<<<< HEAD:app/men/page.tsx
           <div className="text-center mb-16">
             <h2 className="text-4xl font-playfair font-light mb-4">Shop by Category</h2>
@@ -147,6 +224,12 @@ export default function MenPantsPage() {
           <div className="flex justify-between items-center mb-8">
             <div>
               <h2 className="text-3xl font-semibold">Men&apos;s Bell Bottom</h2>
+=======
+          {/* Header */}
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h2 className="text-2xl font-semibold">Men's Pants & Trousers</h2>
+>>>>>>> origin/main:app/men/page.tsx
               <p className="text-gray-600">{filteredProducts.length} products</p>
             </div>
             <Select value={sortBy} onValueChange={handleSort}>
@@ -160,34 +243,72 @@ export default function MenPantsPage() {
                 <SelectItem value="rating">Highest Rated</SelectItem>
               </SelectContent>
             </Select>
+<<<<<<< HEAD:.history/app/men/cut-type/bell-bottom/page_20250815233110.tsx
 >>>>>>> e280f40 (Enhance UI and Add Some Feature):app/men/cut-type/bell-bottom/page.tsx
+=======
+>>>>>>> origin/main:app/men/page.tsx
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {menCategories.map((category) => (
-              <Link key={category.name} href={category.href} className="group">
-                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
-                  <CardContent className="p-0">
-                    <div className="relative aspect-[4/5] overflow-hidden">
+          {/* Products Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredProducts.map((product) => (
+              <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md">
+                <CardContent className="p-0">
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <Link href={`/products/${product.id}`}>
                       <Image
-                        src={category.image || "/placeholder.svg"}
-                        alt={category.name}
+                        src={product.image || "/placeholder.svg"}
+                        alt={product.name}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute bottom-6 left-6 text-white">
-                        <h3 className="text-2xl font-playfair font-semibold mb-2">{category.name}</h3>
-                        <p className="text-sm opacity-90 mb-2">{category.description}</p>
-                        <p className="text-xs opacity-75">{category.count} items</p>
-                      </div>
-                      <div className="absolute top-6 right-6">
-                        <ArrowRight className="h-6 w-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </Link>
+                    {product.badge && (
+                      <Badge className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-indigo-500 border-0">
+                        {product.badge}
+                      </Badge>
+                    )}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-4 right-4 bg-white/80 hover:bg-white"
+                      onClick={() => handleWishlistToggle(product)}
+                    >
+                      <Heart
+                        className={`h-5 w-5 ${isInWishlist(product.id) ? "fill-rose-500 text-rose-500" : "text-gray-600"}`}
+                      />
+                    </Button>
+                  </div>
+                  <div className="p-4">
+                    <Link href={`/products/${product.id}`}>
+                      <h3 className="font-semibold text-lg mb-2 group-hover:text-blue-600 transition-colors">
+                        {product.name}
+                      </h3>
+                    </Link>
+                    <div className="flex items-center mb-2">
+                      <div className="flex items-center">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`h-4 w-4 ${
+                              i < Math.floor(product.rating) ? "fill-amber-400 text-amber-400" : "text-gray-300"
+                            }`}
+                          />
+                        ))}
+                        <span className="text-sm text-gray-600 ml-2">
+                          {product.rating} ({product.reviews})
+                        </span>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl font-bold">${product.price}</span>
+                      {product.originalPrice > product.price && (
+                        <span className="text-sm text-gray-500 line-through">${product.originalPrice}</span>
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>

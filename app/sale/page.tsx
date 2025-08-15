@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Star, Heart, Timer } from "lucide-react"
 import { useWishlist } from "../context/WishlistContext"
 import { useToast } from "@/hooks/use-toast"
+import SpinnerLoader from "../loader/page"
 
 const saleProducts = [
   {
@@ -127,6 +128,13 @@ const saleProducts = [
 ]
 
 export default function SalePage() {
+  const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      const timeout = setTimeout(() => setLoading(false), 1500);
+      return () => clearTimeout(timeout);
+    }, []);
+
   const [sortBy, setSortBy] = useState("discount")
   const [filteredProducts, setFilteredProducts] = useState(saleProducts)
   const { addItem: addToWishlist, isInWishlist } = useWishlist()
@@ -172,6 +180,7 @@ export default function SalePage() {
       })
     }
   }
+  if (loading) return <SpinnerLoader />;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-50 to-white">
@@ -184,11 +193,11 @@ export default function SalePage() {
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="text-5xl md:text-7xl font-playfair font-light mb-4">SALE</h1>
           <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto mb-6">
-            Up to 50% off on selected premium items
+            Up to 50% off on Selected Premium Items
           </p>
           <div className="flex items-center justify-center gap-2 text-lg">
             <Timer className="h-6 w-6" />
-            <span>Limited time offer - Don't miss out!</span>
+            <span>Limited Time Offer - Don't Miss Out !</span>
           </div>
         </div>
       </section>
@@ -218,7 +227,7 @@ export default function SalePage() {
           {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
-              <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md">
+              <Card key={product.id} className="group hover:shadow-xl transition-all duration-200 border-0 shadow-md">
                 <CardContent className="p-0">
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Link href={`/products/${product.id}`}>
@@ -226,7 +235,7 @@ export default function SalePage() {
                         src={product.image || "/placeholder.svg"}
                         alt={product.name}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover group-hover:scale-105 transition-transform duration-400"
                       />
                     </Link>
                     <Badge className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-pink-500 border-0 text-white font-bold">

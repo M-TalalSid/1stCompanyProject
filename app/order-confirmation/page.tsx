@@ -26,7 +26,7 @@ export default function OrderConfirmationPage() {
             </div>
             <div className="flex justify-between">
               <span className="font-semibold">Estimated Delivery:</span>
-              <span>3-5 business days</span>
+              <span>3-5 Business Days</span>
             </div>
             <div className="flex justify-between">
               <span className="font-semibold">Shipping Method:</span>

@@ -1,10 +1,23 @@
+
+"use client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Heart, Users, Award, Leaf, Globe, Star } from "lucide-react"
 import Link from "next/link"
+import { useEffect, useState } from "react"
+import SpinnerLoader from "../loader/page"
 
 export default function AboutPage() {
+  const [loading, setLoading] = useState(true);
+    
+      useEffect(() => {
+        const timeout = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(timeout);
+      }, []);
+      
+      if (loading) return <SpinnerLoader />;
+    
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-50 to-white">
       {/* Hero Section */}
@@ -113,15 +126,15 @@ export default function AboutPage() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold mb-2">50K+</div>
+              <div className="text-4xl font-bold mb-2">5K+</div>
               <div className="text-rose-100">Happy Customers</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">500+</div>
+              <div className="text-4xl font-bold mb-2">50+</div>
               <div className="text-rose-100">Premium Products</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">25+</div>
+              <div className="text-4xl font-bold mb-2">5+</div>
               <div className="text-rose-100">Countries Served</div>
             </div>
             <div>
