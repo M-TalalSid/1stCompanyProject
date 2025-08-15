@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Playfair_Display, Inter } from "next/font/google"
+import { Playfair_Display, Inter,Noto_Sans_JP , Dancing_Script} from "next/font/google"
 import "./globals.css"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
@@ -9,15 +9,19 @@ import { AuthProvider } from "./context/AuthContext"
 import { WishlistProvider } from "./context/WishlistContext"
 import { Toaster } from "@/components/ui/toaster"
 
-const playfair = Playfair_Display({
+
+// Import Dancing Script font
+const dancingScript = Dancing_Script({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: ["400", "700"], // You can also add 500, 600 if you need
+  variable: "--font-dancing-script",
   display: "swap",
 })
-
-const inter = Inter({
+// Load the Google Font
+const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["100", "300", "400", "500", "700", "900"], // Choose weights you need
+  variable: "--font-noto-sans-jp", // CSS variable
   display: "swap",
 })
 
@@ -52,8 +56,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className={inter.className}>
+    // <html lang="en" className={`${notoSansJP.variable}`}>
+    <html lang="en" className={`${dancingScript.variable}`}>
+      <body className="font-dancing-script">
+      {/* <body className="font-noto-sans-jp"> */}
         <AuthProvider>
           <WishlistProvider>
             <CartProvider>
