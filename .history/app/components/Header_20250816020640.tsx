@@ -40,6 +40,7 @@ export default function Header() {
     setOpen(false) // close when link is clicked
   }
 
+
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)
   const wishlistCount = wishlistItems.length
   const [openWomen, setOpenWomen] = useState(false);
@@ -191,8 +192,8 @@ export default function Header() {
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>Rise Types</DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/women/rise-type/High-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/rise-type/Mid-rise">Mid-Rise</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href="/women/rise-type/high-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href="/women/rise-type/mid-rise">Mid-Rise</Link></DropdownMenuItem>
                     <DropdownMenuItem><Link href="/women/rise-type/low-rise">Low-Rise</Link></DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -210,6 +211,10 @@ export default function Header() {
             </DropdownMenu>
 
 
+          <nav className="hidden lg:flex items-center space-x-12">
+            <Link href="/men" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+              Men
+            </Link>
 
             <Link href="/sale" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
               Sale
@@ -218,11 +223,17 @@ export default function Header() {
             <Link href="/about" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
               About
             </Link>
+<<<<<<< HEAD
 
             <Link href="/contact" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
               Contact
             </Link>
 
+=======
+            <Link href="/contact" className="text-gray-700 hover:text-rose-600 transition-colors font-semibold">
+              Contact
+            </Link>
+>>>>>>> origin/main
           </nav>
 
           {/* Search Bar - Desktop */}
@@ -275,16 +286,11 @@ export default function Header() {
                         Order History
                       </Link>
                     </DropdownMenuItem>
-
-                    {/* Only show this if user is admin */}
-                    {user.role === 'admin' && (
-                      <DropdownMenuItem>
-                        <Link href="/admin" className="w-full">
-                          Admin Panel
-                        </Link>
-                      </DropdownMenuItem>
-                    )}
-                    
+                    <DropdownMenuItem>
+                      <Link href="/admin" className="w-full">
+                        Admin Panel
+                      </Link>
+                    </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() => {
                         logout()

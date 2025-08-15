@@ -275,16 +275,11 @@ export default function Header() {
                         Order History
                       </Link>
                     </DropdownMenuItem>
-
-                    {/* Only show this if user is admin */}
-                    {user.role === 'admin' && (
-                      <DropdownMenuItem>
-                        <Link href="/admin" className="w-full">
-                          Admin Panel
-                        </Link>
-                      </DropdownMenuItem>
-                    )}
-                    
+                    <DropdownMenuItem>
+                      <Link href="/admin" className="w-full">
+                        Admin Panel
+                      </Link>
+                    </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() => {
                         logout()

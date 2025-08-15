@@ -54,13 +54,15 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground font-dancing-script;
   }
-  .font-playfair {
-    font-family: var(--font-playfair);
+
+  /* New font class for Noto Sans JP */
+  .font-noto-sans-jp {
+    font-family: var(--font-noto-sans-jp), sans-serif;
   }
-  .font-inter {
-    font-family: var(--font-inter);
+  .font-dancing-script {
+    font-family: var(--font-dancing-script);
   }
 }
 

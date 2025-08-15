@@ -20,11 +20,6 @@ import { useCart } from "../context/CartContext"
 import { useAuth } from "../context/AuthContext"
 import { useWishlist } from "../context/WishlistContext"
 import { useRouter } from "next/navigation"
-import Image from 'next/image';
-import { Plus, Minus } from "lucide-react";
-
-
-
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -34,11 +29,7 @@ export default function Header() {
   const router = useRouter()
 
 
-  const [open, setOpen] = useState(false) // control state
 
-  const handleLinkClick = () => {
-    setOpen(false) // close when link is clicked
-  }
 
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)
   const wishlistCount = wishlistItems.length
@@ -75,141 +66,10 @@ export default function Header() {
             All About Jeans
           </Link>
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-12 text-lg">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="hover:bg-rose-50 text-lg">
-                  <span className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
-                    Men
-                  </span>
-                </Button>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent align="end" className="relative left-44 w-56">
-
-                {/* Fit Types */}
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Fit Types</DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/men/fit-type/slim-fit">Slim Fit</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/fit-type/skinny-fit">Skinny Fit</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/fit-type/regular-fit">Regular Fit</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/fit-type/relaxed-fit">Relaxed Fit</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/fit-type/loose-fit">Loose Fit</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/fit-type/athletic-fit">Athletic Fit</Link></DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
-
-                {/* Cut Types */}
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Cut Types</DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/men/cut-type/straight-cut">Straight Cut</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/cut-type/bell-bottom">Bell Bottom</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/cut-type/wide-leg">Wide-Leg</Link></DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
-
-                {/* Style & Design Type */}
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Style & Design Type</DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/men/style-design-type/ripped">Ripped</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/style-design-type/patchwork">Patchwork</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/style-design-type/cargo-jeans">Cargo Jeans</Link></DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
-
-                {/* Rise Types */}
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Rise Types</DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/men/rise-type/high-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/rise-type/mid-rise">Mid-Rise</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/rise-type/low-rise">Low-Rise</Link></DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
-
-                {/* Functional Type */}
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Functional Types</DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/men/functional-type/jegging">Jeggings</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/functional-type/stretch-jeans">Stretch Jeans</Link></DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
-
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="hover:bg-rose-50 text-lg">
-                  <span className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
-                    Women
-                  </span>
-                </Button>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent align="end" className="relative left-44 w-56">
-
-                {/* Fit Types */}
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Fit Types</DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/women/fit-type/slim-fit">Slim Fit</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/fit-type/skinny-fit">Skinny Fit</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/fit-type/regular-fit">Regular Fit</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/fit-type/relaxed-fit">Relaxed Fit</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/fit-type/loose-fit">Loose Fit</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/fit-type/athletic-fit">Athletic Fit</Link></DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
-
-                {/* Cut Types */}
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Cut Types</DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/women/cut-type/straight-cut">Straight Cut</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/cut-type/bell-bottom">Bell Bottom</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/cut-type/wide-leg">Wide-Leg</Link></DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
-
-                {/* Style & Design Type */}
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Style & Design Type</DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/women/style-design-type/ripped">Ripped</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/style-design-type/patchwork">Patchwork</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/style-design-type/cargo-jeans">Cargo Jeans</Link></DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
-
-                {/* Rise Types */}
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Rise Types</DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/women/rise-type/High-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/rise-type/Mid-rise">Mid-Rise</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/rise-type/low-rise">Low-Rise</Link></DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
-
-                {/* Functional Type */}
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Functional Types</DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/women/functional-type/jegging">Jeggings</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/functional-type/stretch-jeans">Stretch Jeans</Link></DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
-
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-
+          <nav className="hidden lg:flex items-center space-x-12">
+            <Link href="/men" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+              Men
+            </Link>
 
             <Link href="/sale" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
               Sale
@@ -218,11 +78,9 @@ export default function Header() {
             <Link href="/about" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
               About
             </Link>
-
-            <Link href="/contact" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+            <Link href="/contact" className="text-gray-700 hover:text-rose-600 transition-colors font-semibold">
               Contact
             </Link>
-
           </nav>
 
           {/* Search Bar - Desktop */}
@@ -275,34 +133,22 @@ export default function Header() {
                         Order History
                       </Link>
                     </DropdownMenuItem>
-
-                    {/* Only show this if user is admin */}
-                    {user.role === 'admin' && (
-                      <DropdownMenuItem>
-                        <Link href="/admin" className="w-full">
-                          Admin Panel
-                        </Link>
-                      </DropdownMenuItem>
-                    )}
-                    
-                    <DropdownMenuItem
-                      onClick={() => {
-                        logout()
-                        router.push('/auth-pages/login')
-                      }}
-                    >
-                      Logout
+                    <DropdownMenuItem>
+                      <Link href="/admin" className="w-full">
+                        Admin Panel
+                      </Link>
                     </DropdownMenuItem>
+                    <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
                   </>
                 ) : (
                   <>
                     <DropdownMenuItem>
-                      <Link href="/auth-pages/login" className="w-full">
+                      <Link href="/login" className="w-full">
                         Login
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link href="/auth-pages/register" className="w-full">
+                      <Link href="/register" className="w-full">
                         Register
                       </Link>
                     </DropdownMenuItem>
@@ -340,7 +186,7 @@ export default function Header() {
               <Search className="h-6 w-6" />
             </Button>
 
-            <Sheet open={open} onOpenChange={setOpen}>
+            {/* <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <button className="lg:hidden h-6 w-6">
                   <Menu className="" />
@@ -513,7 +359,7 @@ export default function Header() {
                   </div>
                 </nav>
               </SheetContent>
-            </Sheet>
+            </Sheet> */}
           </div>
         </div>
 

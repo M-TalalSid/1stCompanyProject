@@ -191,8 +191,8 @@ export default function Header() {
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>Rise Types</DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/women/rise-type/High-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/rise-type/Mid-rise">Mid-Rise</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href="/women/rise-type/high-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href="/women/rise-type/mid-rise">Mid-Rise</Link></DropdownMenuItem>
                     <DropdownMenuItem><Link href="/women/rise-type/low-rise">Low-Rise</Link></DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -275,16 +275,11 @@ export default function Header() {
                         Order History
                       </Link>
                     </DropdownMenuItem>
-
-                    {/* Only show this if user is admin */}
-                    {user.role === 'admin' && (
-                      <DropdownMenuItem>
-                        <Link href="/admin" className="w-full">
-                          Admin Panel
-                        </Link>
-                      </DropdownMenuItem>
-                    )}
-                    
+                    <DropdownMenuItem>
+                      <Link href="/admin" className="w-full">
+                        Admin Panel
+                      </Link>
+                    </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() => {
                         logout()

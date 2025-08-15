@@ -19,18 +19,23 @@ import { Search, ShoppingCart, User, Menu, Heart } from "lucide-react"
 import { useCart } from "../context/CartContext"
 import { useAuth } from "../context/AuthContext"
 import { useWishlist } from "../context/WishlistContext"
+<<<<<<< HEAD
+=======
 import { useRouter } from "next/navigation"
 import Image from 'next/image';
 import { Plus, Minus } from "lucide-react";
 
 
 
+>>>>>>> e280f40 (Enhance UI and Add Some Feature)
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const { items } = useCart()
   const { user, logout } = useAuth()
   const { items: wishlistItems } = useWishlist()
+<<<<<<< HEAD
+=======
   const router = useRouter()
 
 
@@ -39,6 +44,7 @@ export default function Header() {
   const handleLinkClick = () => {
     setOpen(false) // close when link is clicked
   }
+>>>>>>> e280f40 (Enhance UI and Add Some Feature)
 
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)
   const wishlistCount = wishlistItems.length
@@ -75,6 +81,46 @@ export default function Header() {
             All About Jeans
           </Link>
           {/* Desktop Navigation */}
+<<<<<<< HEAD
+          <nav className="hidden lg:flex items-center space-x-12">
+            <DropdownMenu>
+              <DropdownMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+                Women
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuItem>
+                  <Link href="/women/dresses" className="w-full">
+                    Dresses
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/women/tops" className="w-full">
+                    Tops & Blouses
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/women/bottoms" className="w-full">
+                    Bottoms
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/women/outerwear" className="w-full">
+                    Outerwear
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/women/shoes" className="w-full">
+                    Shoes
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/women/bags" className="w-full">
+                    Bags
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+=======
           <nav className="hidden lg:flex items-center space-x-12 text-lg">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -106,7 +152,7 @@ export default function Header() {
                   <DropdownMenuSubContent>
                     <DropdownMenuItem><Link href="/men/cut-type/straight-cut">Straight Cut</Link></DropdownMenuItem>
                     <DropdownMenuItem><Link href="/men/cut-type/bell-bottom">Bell Bottom</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/cut-type/wide-leg">Wide-Leg</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href="/men/cut-type/Wide-leg">Wide-Leg</Link></DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
 
@@ -124,8 +170,8 @@ export default function Header() {
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>Rise Types</DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/men/rise-type/high-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/men/rise-type/mid-rise">Mid-Rise</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href="/men/rise-type/High-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href="/men/rise-type/Mid-rise">Mid-Rise</Link></DropdownMenuItem>
                     <DropdownMenuItem><Link href="/men/rise-type/low-rise">Low-Rise</Link></DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -210,10 +256,87 @@ export default function Header() {
             </DropdownMenu>
 
 
+>>>>>>> e280f40 (Enhance UI and Add Some Feature)
 
-            <Link href="/sale" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+            <DropdownMenu>
+              <DropdownMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+                Men
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuItem>
+                  <Link href="/men/shirts" className="w-full">
+                    Shirts
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/men/pants" className="w-full">
+                    Pants & Trousers
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/men/suits" className="w-full">
+                    Suits & Blazers
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/men/outerwear" className="w-full">
+                    Outerwear
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/men/shoes" className="w-full">
+                    Shoes
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/men/accessories" className="w-full">
+                    Accessories
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+                Kids
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuItem>
+                  <Link href="/kids/girls" className="w-full">
+                    Girls (2-14 years)
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/kids/boys" className="w-full">
+                    Boys (2-14 years)
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/kids/baby-girls" className="w-full">
+                    Baby Girls (0-24 months)
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/kids/baby-boys" className="w-full">
+                    Baby Boys (0-24 months)
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/kids/shoes" className="w-full">
+                    Kids Shoes
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Link href="/accessories" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
+              Accessories
+            </Link>
+            <Link href="/sale" className="text-rose-600 hover:text-rose-700 transition-colors font-semibold">
               Sale
             </Link>
+<<<<<<< HEAD
+=======
 
             <Link href="/about" className="text-gray-700 hover:text-rose-600 transition-colors font-medium">
               About
@@ -223,6 +346,7 @@ export default function Header() {
               Contact
             </Link>
 
+>>>>>>> e280f40 (Enhance UI and Add Some Feature)
           </nav>
 
           {/* Search Bar - Desktop */}
@@ -275,34 +399,22 @@ export default function Header() {
                         Order History
                       </Link>
                     </DropdownMenuItem>
-
-                    {/* Only show this if user is admin */}
-                    {user.role === 'admin' && (
-                      <DropdownMenuItem>
-                        <Link href="/admin" className="w-full">
-                          Admin Panel
-                        </Link>
-                      </DropdownMenuItem>
-                    )}
-                    
-                    <DropdownMenuItem
-                      onClick={() => {
-                        logout()
-                        router.push('/auth-pages/login')
-                      }}
-                    >
-                      Logout
+                    <DropdownMenuItem>
+                      <Link href="/admin" className="w-full">
+                        Admin Panel
+                      </Link>
                     </DropdownMenuItem>
+                    <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
                   </>
                 ) : (
                   <>
                     <DropdownMenuItem>
-                      <Link href="/auth-pages/login" className="w-full">
+                      <Link href="/login" className="w-full">
                         Login
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link href="/auth-pages/register" className="w-full">
+                      <Link href="/register" className="w-full">
                         Register
                       </Link>
                     </DropdownMenuItem>
