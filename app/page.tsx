@@ -50,7 +50,7 @@ export default function HomePage() {
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
           <Badge className="mb-6 bg-rose-100 text-rose-800 hover:bg-rose-200">New Collection Available</Badge>
           <h1 className="text-6xl md:text-8xl font-playfair font-bold mb-6 bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">
-            Timeless Elegance
+           All About Jeans
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
             Discover our curated collection of premium fashion pieces that blend contemporary style with classic

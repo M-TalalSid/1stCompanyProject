@@ -191,8 +191,8 @@ export default function Header() {
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>Rise Types</DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/women/rise-type/High-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/rise-type/Mid-rise">Mid-Rise</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href="/women/rise-type/high-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href="/women/rise-type/mid-rise">Mid-Rise</Link></DropdownMenuItem>
                     <DropdownMenuItem><Link href="/women/rise-type/low-rise">Low-Rise</Link></DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -288,15 +288,25 @@ export default function Header() {
                     >
                       Logout
                     </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        logout()
+                        router.push('/auth-pages/login')
+                      }}
+                    >
+                      Logout
+                    </DropdownMenuItem>
                   </>
                 ) : (
                   <>
                     <DropdownMenuItem>
                       <Link href="/auth-pages/login" className="w-full">
+                      <Link href="/auth-pages/login" className="w-full">
                         Login
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
+                      <Link href="/auth-pages/register" className="w-full">
                       <Link href="/auth-pages/register" className="w-full">
                         Register
                       </Link>
