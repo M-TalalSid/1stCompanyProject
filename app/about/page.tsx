@@ -7,6 +7,7 @@ import { Heart, Users, Award, Leaf, Globe, Star } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import SpinnerLoader from "../loader/page"
+import Image from "next/image"
 
 export default function AboutPage() {
   const [loading, setLoading] = useState(true);
@@ -60,9 +61,13 @@ export default function AboutPage() {
             <div className="relative">
               <div className="aspect-square bg-gradient-to-br from-rose-200 to-purple-200 rounded-2xl flex items-center justify-center">
                 <div className="text-center">
-                  <Heart className="h-16 w-16 text-rose-600 mx-auto mb-4" />
+                  {/* <Heart className="h-16 w-16 text-rose-600 mx-auto mb-4" />
                   <p className="text-lg font-semibold text-gray-800">Made with Love</p>
-                  <p className="text-gray-600">Every piece tells a story</p>
+                  <p className="text-gray-600">Every piece tells a story</p> */}
+                  <div className="absolute inset-0">
+                      <Image src="/images/WhatsApp Image 2025-08-20 at 10.13.17 PM (1).jpeg" alt="Contact Us" 
+                      fill className="object-fit" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -145,59 +150,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-playfair font-bold mb-4 text-gray-900">Meet Our Team</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">The passionate people behind LUXE</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-rose-200 to-rose-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-rose-700">SJ</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Sarah Johnson</h3>
-                <p className="text-rose-600 font-medium mb-3">Founder & CEO</p>
-                <p className="text-gray-600 text-sm">
-                  Former fashion editor with 15 years of experience in luxury retail. Passionate about sustainable
-                  fashion and empowering women through style.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-purple-200 to-purple-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-purple-700">MC</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Michael Chen</h3>
-                <p className="text-purple-600 font-medium mb-3">Creative Director</p>
-                <p className="text-gray-600 text-sm">
-                  Award-winning designer who brings fresh perspectives to timeless silhouettes. Believes that great
-                  design should be both beautiful and functional.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-200 to-blue-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-blue-700">ER</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Emma Rodriguez</h3>
-                <p className="text-blue-600 font-medium mb-3">Head of Sustainability</p>
-                <p className="text-gray-600 text-sm">
-                  Environmental scientist turned fashion advocate. Leads our sustainability initiatives and ensures our
-                  commitment to ethical practices.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
 
       {/* Mission Section */}
       <section className="py-16 px-4 bg-gray-50">
@@ -240,7 +192,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-rose-600 hover:bg-rose-700">
-                <Link href="/products">Shop Collection</Link>
+                <Link href="./">Our Collection</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
                 <Link href="/contact">Get In Touch</Link>

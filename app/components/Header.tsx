@@ -191,8 +191,8 @@ export default function Header() {
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>Rise Types</DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem><Link href="/women/rise-type/High-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href="/women/rise-type/Mid-rise">Mid-Rise</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href="/women/rise-type/high-rise">High-Rise (High Waist)</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href="/women/rise-type/mid-rise">Mid-Rise</Link></DropdownMenuItem>
                     <DropdownMenuItem><Link href="/women/rise-type/low-rise">Low-Rise</Link></DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>

@@ -188,7 +188,7 @@ export default function SalePage() {
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-red-900/80 to-pink-900/80" />
         <div className="absolute inset-0">
-          <Image src="/placeholder.svg?height=600&width=1200" alt="Sale" fill className="object-cover" />
+          <Image src="/images/WhatsApp Image 2025-08-20 at 10.00.02 PM.jpeg" alt="Sale" fill className="object-cover" />
         </div>
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="text-5xl md:text-7xl font-playfair font-light mb-4">SALE</h1>

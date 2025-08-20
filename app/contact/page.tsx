@@ -94,7 +94,7 @@ export default function ContactPage() {
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-gray-900/80" />
         <div className="absolute inset-0">
-          <Image src="/placeholder.svg?height=600&width=1200" alt="Contact Us" fill className="object-cover" />
+          <Image src="/images/WhatsApp Image 2025-08-20 at 9.02.36 PM.jpeg" alt="Contact Us" fill className="object-fit" />
         </div>
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="text-5xl md:text-7xl font-playfair font-light mb-4">Contact Us</h1>
@@ -107,7 +107,7 @@ export default function ContactPage() {
       {/* Contact Information Cards */}
       <section className="py-16 -mt-20 relative z-10">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             <Card className="text-center shadow-xl border-0 bg-white">
               <CardContent className="p-8">
                 <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-rose-500 to-purple-500 rounded-full flex items-center justify-center">
@@ -156,21 +156,7 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            <Card className="text-center shadow-xl border-0 bg-white">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center">
-                  <MessageCircle className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Live Chat</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Available 24/7
-                  <br />
-                  Instant Support for
-                  <br />
-                  Urgent Inquiries
-                </p>
-              </CardContent>
-            </Card>
+           
           </div>
         </div>
       </section>
@@ -340,58 +326,43 @@ export default function ContactPage() {
                       <p className="text-sm text-gray-600">Size guide and fitting tips</p>
                     </div>
                   </Button>
+                  <Separator />
+                  <Button variant="ghost" className="w-full justify-start text-left p-0 h-auto">
+                    <div>
+                      <p className="font-medium">Do you offer international shipping?</p>
+                      <p className="text-sm text-gray-600">Shipping options and rates</p>
+                    </div>
+                  </Button>
+                  <Separator />
+                  <Button variant="ghost" className="w-full justify-start text-left p-0 h-auto">
+                    <div>
+                      <p className="font-medium">Do you offer international shipping?</p>
+                      <p className="text-sm text-gray-600">Shipping options and rates</p>
+                    </div>
+                  </Button>
+                  <Separator />
+                  <Button variant="ghost" className="w-full justify-start text-left p-0 h-auto">
+                    <div>
+                      <p className="font-medium">Do you offer international shipping?</p>
+                      <p className="text-sm text-gray-600">Shipping options and rates</p>
+                    </div>
+                  </Button>
+                  <Separator />
+                  <Button variant="ghost" className="w-full justify-start text-left p-0 h-auto">
+                    <div>
+                      <p className="font-medium">Do you offer international shipping?</p>
+                      <p className="text-sm text-gray-600">Shipping options and rates</p>
+                    </div>
+                  </Button>
+                  <Separator />
                 </CardContent>
               </Card>
 
-              {/* Social Media */}
-              <Card className="shadow-xl border-0">
-                <CardHeader>
-                  <CardTitle>Follow Us</CardTitle>
-                  <p className="text-gray-600">Stay connected for the Latest Updates and Exclusive Offers</p>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex space-x-4">
-                    <Button variant="outline" size="icon" className="rounded-full bg-transparent">
-                      <Facebook className="h-5 w-5" />
-                    </Button>
-                    <Button variant="outline" size="icon" className="rounded-full bg-transparent">
-                      <Twitter className="h-5 w-5" />
-                    </Button>
-                    <Button variant="outline" size="icon" className="rounded-full bg-transparent">
-                      <Instagram className="h-5 w-5" />
-                    </Button>
-                    <Button variant="outline" size="icon" className="rounded-full bg-transparent">
-                      <Youtube className="h-5 w-5" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-playfair font-light mb-4">Visit Our Flagship Store</h2>
-            <p className="text-xl text-gray-600">Experience luxury fashion in person at our New York location</p>
-          </div>
-
-          {/* Placeholder for map - in a real app, you'd integrate with Google Maps or similar */}
-          <div className="relative h-96 bg-gray-300 rounded-2xl overflow-hidden shadow-xl">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-16 w-16 mx-auto mb-4 text-gray-500" />
-                <h3 className="text-2xl font-semibold mb-2">Interactive Map</h3>
-                <p className="text-gray-600">123 Fashion Avenue, New York, NY 10001</p>
-                <Button className="mt-4 bg-rose-600 hover:bg-rose-700">Get Directions</Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

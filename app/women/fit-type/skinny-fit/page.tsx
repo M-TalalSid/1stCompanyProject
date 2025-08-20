@@ -142,13 +142,11 @@ export default function MenPantsPage() {
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-gray-900/80" />
         <div className="absolute inset-0">
-        <Image src="/WhatsApp Image 2025-08-09 at 9.04.50 PM.jpeg" 
-          alt="Men's Pants" 
-          fill className="object-cover" />        
+          <Image src="/images/WhatsApp Image 2025-08-09 at 9.04.51 PM (1).jpeg" alt="Women's Pants" fill className="object-cover" />
           </div>
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-4xl md:text-6xl font-playfair font-light text-black mb-4">Skinny Jeans</h1>
-          <p className="text-xl font-light text-black">Premium bottoms for every occasion</p>
+          <h1 className="text-4xl md:text-6xl font-playfair font-light text-white mb-4">Skinny Jeans</h1>
+          <p className="text-xl font-light text-white">Premium bottoms for every occasion</p>
         </div>
       </section>
 

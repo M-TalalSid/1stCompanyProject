@@ -160,8 +160,8 @@ export default function HomePage() {
       {/* Features Section */}
       <section className="py-20 px-4 bg-white">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 ">
+            <div className="text-center shadow-xl border bg-white p-10 rounded border-gray-300 ">
               <div className="bg-rose-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Truck className="h-8 w-8 text-rose-600" />
               </div>
@@ -171,7 +171,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="text-center">
+            <div className="text-center shadow-xl border bg-white p-10 rounded border-gray-300 ">
               <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Shield className="h-8 w-8 text-purple-600" />
               </div>
@@ -181,7 +181,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="text-center">
+            <div className="text-center shadow-xl border bg-white p-10 rounded border-gray-300 ">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <RotateCcw className="h-8 w-8 text-blue-600" />
               </div>
@@ -194,23 +194,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-rose-600 to-purple-600 text-white">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-playfair font-bold mb-4">Stay in Style</h2>
-          <p className="text-xl mb-8 opacity-90">
-            Subscribe to our newsletter for exclusive offers and style inspiration
-          </p>
-          <div className="max-w-md mx-auto flex gap-4">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white/50"
-            />
-            <Button className="bg-white text-rose-600 hover:bg-gray-100 px-6 py-3">Subscribe</Button>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
