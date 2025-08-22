@@ -1,15 +1,21 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Star, Heart } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
-import { useWishlist } from "@/app/context/WishlistContext"
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Star, Heart } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useWishlist } from "@/app/context/WishlistContext";
 
 const pants = [
   {
@@ -90,34 +96,34 @@ const pants = [
     badge: "Formal",
     category: "men",
   },
-]
+];
 
 export default function MenPantsPage() {
-  const [sortBy, setSortBy] = useState("featured")
-  const [filteredProducts, setFilteredProducts] = useState(pants)
-  const { addItem: addToWishlist, isInWishlist } = useWishlist()
-  const { toast } = useToast()
+  const [sortBy, setSortBy] = useState("featured");
+  const [filteredProducts, setFilteredProducts] = useState(pants);
+  const { addItem: addToWishlist, isInWishlist } = useWishlist();
+  const { toast } = useToast();
 
   const handleSort = (value: string) => {
-    setSortBy(value)
-    const sorted = [...pants]
+    setSortBy(value);
+    const sorted = [...pants];
 
     switch (value) {
       case "price-low":
-        sorted.sort((a, b) => a.price - b.price)
-        break
+        sorted.sort((a, b) => a.price - b.price);
+        break;
       case "price-high":
-        sorted.sort((a, b) => b.price - a.price)
-        break
+        sorted.sort((a, b) => b.price - a.price);
+        break;
       case "rating":
-        sorted.sort((a, b) => b.rating - a.rating)
-        break
+        sorted.sort((a, b) => b.rating - a.rating);
+        break;
       default:
-        break
+        break;
     }
 
-    setFilteredProducts(sorted)
-  }
+    setFilteredProducts(sorted);
+  };
 
   const handleWishlistToggle = (product: any) => {
     if (!isInWishlist(product.id)) {
@@ -128,13 +134,13 @@ export default function MenPantsPage() {
         originalPrice: product.originalPrice,
         image: product.image,
         category: product.category,
-      })
+      });
       toast({
         title: "Added to wishlist!",
         description: `${product.name} has been added to your wishlist.`,
-      })
+      });
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -142,11 +148,20 @@ export default function MenPantsPage() {
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-gray-900/80" />
         <div className="absolute inset-0">
-          <Image src="/WhatsApp Image 2025-08-09 at 9.04.51 PM.jpeg" alt="Men's Pants" fill className="object-cover" />
+          <Image
+            src="/images/WhatsApp Image 2025-08-09 at 9.04.51 PM (1).jpeg"
+            alt="Women's Pants"
+            fill
+            className="object-cover"
+          />
         </div>
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-4xl md:text-6xl font-playfair font-light mb-4">Straight Cut</h1>
-          <p className="text-xl font-light">Premium bottoms for every occasion</p>
+          <h1 className="text-4xl md:text-6xl font-playfair font-light mb-4">
+            Straight Cut
+          </h1>
+          <p className="text-xl font-light">
+            Premium bottoms for every occasion
+          </p>
         </div>
       </section>
 
@@ -156,8 +171,12 @@ export default function MenPantsPage() {
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h2 className="text-3xl font-semibold">Women&apos;s Straight Cut</h2>
-              <p className="text-gray-600">{filteredProducts.length} products</p>
+              <h2 className="text-3xl font-semibold">
+                Women&apos;s Straight Cut
+              </h2>
+              <p className="text-gray-600">
+                {filteredProducts.length} products
+              </p>
             </div>
             <Select value={sortBy} onValueChange={handleSort}>
               <SelectTrigger className="w-48">
@@ -175,7 +194,10 @@ export default function MenPantsPage() {
           {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
-              <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md">
+              <Card
+                key={product.id}
+                className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md"
+              >
                 <CardContent className="p-0">
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Link href={`/products/${product.id}`}>
@@ -214,7 +236,9 @@ export default function MenPantsPage() {
                           <Star
                             key={i}
                             className={`h-4 w-4 ${
-                              i < Math.floor(product.rating) ? "fill-amber-400 text-amber-400" : "text-gray-300"
+                              i < Math.floor(product.rating)
+                                ? "fill-amber-400 text-amber-400"
+                                : "text-gray-300"
                             }`}
                           />
                         ))}
@@ -224,9 +248,13 @@ export default function MenPantsPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xl font-bold">${product.price}</span>
+                      <span className="text-xl font-bold">
+                        ${product.price}
+                      </span>
                       {product.originalPrice > product.price && (
-                        <span className="text-sm text-gray-500 line-through">${product.originalPrice}</span>
+                        <span className="text-sm text-gray-500 line-through">
+                          ${product.originalPrice}
+                        </span>
                       )}
                     </div>
                   </div>
@@ -237,5 +265,5 @@ export default function MenPantsPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

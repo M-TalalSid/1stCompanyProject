@@ -1,16 +1,22 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Star, Heart, Timer } from "lucide-react"
-import { useWishlist } from "../context/WishlistContext"
-import { useToast } from "@/hooks/use-toast"
-import SpinnerLoader from "../loader/page"
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Star, Heart, Timer } from "lucide-react";
+import { useWishlist } from "../context/WishlistContext";
+import { useToast } from "@/hooks/use-toast";
+import SpinnerLoader from "../loader/page";
 
 const saleProducts = [
   {
@@ -125,44 +131,44 @@ const saleProducts = [
     category: "kids",
     discount: 50,
   },
-]
+];
 
 export default function SalePage() {
   const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {
-      const timeout = setTimeout(() => setLoading(false), 1500);
-      return () => clearTimeout(timeout);
-    }, []);
 
-  const [sortBy, setSortBy] = useState("discount")
-  const [filteredProducts, setFilteredProducts] = useState(saleProducts)
-  const { addItem: addToWishlist, isInWishlist } = useWishlist()
-  const { toast } = useToast()
+  useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  const [sortBy, setSortBy] = useState("discount");
+  const [filteredProducts, setFilteredProducts] = useState(saleProducts);
+  const { addItem: addToWishlist, isInWishlist } = useWishlist();
+  const { toast } = useToast();
 
   const handleSort = (value: string) => {
-    setSortBy(value)
-    const sorted = [...saleProducts]
+    setSortBy(value);
+    const sorted = [...saleProducts];
 
     switch (value) {
       case "price-low":
-        sorted.sort((a, b) => a.price - b.price)
-        break
+        sorted.sort((a, b) => a.price - b.price);
+        break;
       case "price-high":
-        sorted.sort((a, b) => b.price - a.price)
-        break
+        sorted.sort((a, b) => b.price - a.price);
+        break;
       case "discount":
-        sorted.sort((a, b) => b.discount - a.discount)
-        break
+        sorted.sort((a, b) => b.discount - a.discount);
+        break;
       case "rating":
-        sorted.sort((a, b) => b.rating - a.rating)
-        break
+        sorted.sort((a, b) => b.rating - a.rating);
+        break;
       default:
-        break
+        break;
     }
 
-    setFilteredProducts(sorted)
-  }
+    setFilteredProducts(sorted);
+  };
 
   const handleWishlistToggle = (product: any) => {
     if (!isInWishlist(product.id)) {
@@ -173,13 +179,13 @@ export default function SalePage() {
         originalPrice: product.originalPrice,
         image: product.image,
         category: product.category,
-      })
+      });
       toast({
         title: "Added to wishlist!",
         description: `${product.name} has been added to your wishlist.`,
-      })
+      });
     }
-  }
+  };
   if (loading) return <SpinnerLoader />;
 
   return (
@@ -188,12 +194,19 @@ export default function SalePage() {
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-red-900/80 to-pink-900/80" />
         <div className="absolute inset-0">
-          <Image src="/placeholder.svg?height=600&width=1200" alt="Sale" fill className="object-cover" />
+          <Image
+            src="/images/WhatsApp Image 2025-08-20 at 10.00.02 PM.jpeg"
+            alt="Sale"
+            fill
+            className="object-cover"
+          />
         </div>
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-5xl md:text-7xl font-playfair font-light mb-4">SALE</h1>
+          <h1 className="text-5xl md:text-7xl font-playfair font-light mb-4">
+            SALE
+          </h1>
           <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto mb-6">
-            Up to 50% off on Selected Premium Items
+            Up To 40% Off On Selected Premium Items
           </p>
           <div className="flex items-center justify-center gap-2 text-lg">
             <Timer className="h-6 w-6" />
@@ -209,7 +222,9 @@ export default function SalePage() {
           <div className="flex justify-between items-center mb-8">
             <div>
               <h2 className="text-3xl font-playfair font-light">Sale Items</h2>
-              <p className="text-gray-600 text-lg">{filteredProducts.length} products on sale</p>
+              <p className="text-gray-600 text-lg">
+                {filteredProducts.length} products on sale
+              </p>
             </div>
             <Select value={sortBy} onValueChange={handleSort}>
               <SelectTrigger className="w-48">
@@ -227,7 +242,10 @@ export default function SalePage() {
           {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
-              <Card key={product.id} className="group hover:shadow-xl transition-all duration-200 border-0 shadow-md">
+              <Card
+                key={product.id}
+                className="group hover:shadow-xl transition-all duration-200 border-0 shadow-md"
+              >
                 <CardContent className="p-0">
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Link href={`/products/${product.id}`}>
@@ -264,7 +282,9 @@ export default function SalePage() {
                           <Star
                             key={i}
                             className={`h-4 w-4 ${
-                              i < Math.floor(product.rating) ? "fill-amber-400 text-amber-400" : "text-gray-300"
+                              i < Math.floor(product.rating)
+                                ? "fill-amber-400 text-amber-400"
+                                : "text-gray-300"
                             }`}
                           />
                         ))}
@@ -274,12 +294,17 @@ export default function SalePage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xl font-bold text-red-600">${product.price}</span>
-                      <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
+                      <span className="text-xl font-bold text-red-600">
+                        ${product.price}
+                      </span>
+                      <span className="text-lg text-gray-500 line-through">
+                        ${product.originalPrice}
+                      </span>
                     </div>
                     <div className="mt-2">
                       <span className="text-sm font-medium text-green-600">
-                        You save ${(product.originalPrice - product.price).toFixed(2)}
+                        You save $
+                        {(product.originalPrice - product.price).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -290,5 +315,5 @@ export default function SalePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

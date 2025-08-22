@@ -1,31 +1,37 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Eye, EyeOff, Mail, Lock } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
-import { useAuth } from "@/app/context/AuthContext"
+import type React from "react";
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/app/context/AuthContext";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { login } = useAuth()
-  const router = useRouter()
-  const { toast } = useToast()
+  const { login } = useAuth();
+  const router = useRouter();
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
 
     // Basic validation
     if (!email || !password) {
@@ -33,47 +39,50 @@ export default function LoginPage() {
         title: "Please fill in all fields",
         description: "Email and password are required.",
         variant: "destructive",
-      })
-      setIsLoading(false)
-      return
+      });
+      setIsLoading(false);
+      return;
     }
 
     try {
-      const success = await login(email, password)
+      const success = await login(email, password);
 
       if (success) {
         toast({
           title: "Welcome Back !",
           description: "You have been successfully logged in.",
-        })
+        });
         setTimeout(() => {
-        router.push('/account')
-      }, 500)
-
+          router.push("/account");
+        }, 500);
       } else {
         toast({
           title: "Login Failed",
           description: "Invalid email or password. Please try again.",
           variant: "destructive",
-        })
+        });
       }
     } catch (error) {
       toast({
         title: "Login Failed",
         description: "An error occurred. Please try again.",
         variant: "destructive",
-      })
+      });
     }
 
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-50 to-white flex items-center justify-center py-12 px-4">
       <Card className="w-full max-w-md shadow-xl border-0">
         <CardHeader className="text-center space-y-4">
-          <CardTitle className="text-3xl font-playfair font-light">Welcome Back</CardTitle>
-          <CardDescription className="text-lg">Sign in to your account to continue shopping</CardDescription>
+          <CardTitle className="text-3xl font-playfair font-light">
+            Welcome Back
+          </CardTitle>
+          <CardDescription className="text-lg">
+            Sign in to your account to continue shopping
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -140,12 +149,17 @@ export default function LoginPage() {
               <Separator />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-gray-500">Or continue with</span>
+              <span className="bg-white px-2 text-gray-500">
+                Or continue with
+              </span>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <Button variant="outline" className="py-3 rounded-xl border-2 bg-transparent">
+            <Button
+              variant="outline"
+              className="py-3 rounded-xl border-2 bg-transparent"
+            >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
@@ -166,8 +180,15 @@ export default function LoginPage() {
               </svg>
               Google
             </Button>
-            <Button variant="outline" className="py-3 rounded-xl border-2 bg-transparent">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <Button
+              variant="outline"
+              className="py-3 rounded-xl border-2 bg-transparent"
+            >
+              <svg
+                className="w-5 h-5 mr-2"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
               </svg>
               Facebook
@@ -177,12 +198,18 @@ export default function LoginPage() {
           <div className="text-center space-y-4">
             <div className="text-sm">
               <span className="text-gray-600">Don't have an account? </span>
-              <Link href="/auth-pages/register" className="text-rose-600 hover:text-rose-700 font-medium hover:underline">
+              <Link
+                href="/auth-pages/register"
+                className="text-rose-600 hover:text-rose-700 font-medium hover:underline"
+              >
                 Sign up
               </Link>
             </div>
             <div>
-              <Link href="/auth-pages/forgot" className="text-sm text-rose-600 hover:text-rose-700 hover:underline">
+              <Link
+                href="/auth-pages/forgot"
+                className="text-sm text-rose-600 hover:text-rose-700 hover:underline"
+              >
                 Forgot your password?
               </Link>
             </div>
@@ -190,5 +217,5 @@ export default function LoginPage() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

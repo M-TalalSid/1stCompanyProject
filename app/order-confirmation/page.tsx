@@ -1,10 +1,11 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { CheckCircle, Package, Truck, Mail } from "lucide-react"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle, Package, Truck, Mail } from "lucide-react";
 
 export default function OrderConfirmationPage() {
-  const orderNumber = "ORD-" + Math.random().toString(36).substr(2, 9).toUpperCase()
+  const orderNumber =
+    "ORD-" + Math.random().toString(36).substr(2, 9).toUpperCase();
 
   return (
     <div className="container mx-auto px-4 py-16">
@@ -12,7 +13,10 @@ export default function OrderConfirmationPage() {
         <div className="mb-8">
           <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
           <h1 className="text-3xl font-bold mb-2">Order Confirmed!</h1>
-          <p className="text-gray-600">Thank you for your purchase. Your order has been successfully placed.</p>
+          <p className="text-gray-600">
+            Thank you for your purchase. Your order has been successfully
+            placed.
+          </p>
         </div>
 
         <Card className="mb-8">
@@ -39,7 +43,9 @@ export default function OrderConfirmationPage() {
           <div className="text-center">
             <Mail className="h-8 w-8 mx-auto mb-2 text-blue-600" />
             <h3 className="font-semibold mb-1">Confirmation Email</h3>
-            <p className="text-sm text-gray-600">Check your email for order details</p>
+            <p className="text-sm text-gray-600">
+              Check your email for order details
+            </p>
           </div>
           <div className="text-center">
             <Package className="h-8 w-8 mx-auto mb-2 text-orange-600" />
@@ -49,7 +55,9 @@ export default function OrderConfirmationPage() {
           <div className="text-center">
             <Truck className="h-8 w-8 mx-auto mb-2 text-green-600" />
             <h3 className="font-semibold mb-1">Shipping</h3>
-            <p className="text-sm text-gray-600">You'll receive tracking info soon</p>
+            <p className="text-sm text-gray-600">
+              You'll receive tracking info soon
+            </p>
           </div>
         </div>
 
@@ -63,5 +71,5 @@ export default function OrderConfirmationPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

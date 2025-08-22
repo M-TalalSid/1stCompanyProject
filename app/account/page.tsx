@@ -1,16 +1,29 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { User, Package, Heart, Settings, MapPin, CreditCard } from "lucide-react"
-import { useAuth } from "../context/AuthContext"
-import { useRouter } from "next/navigation"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import {
+  User,
+  Package,
+  Heart,
+  Settings,
+  MapPin,
+  CreditCard,
+} from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const mockOrders = [
   {
@@ -30,17 +43,16 @@ const mockOrders = [
     total: 59.99,
     items: [{ name: "Summer Dress", quantity: 1, price: 59.99 }],
   },
-]
+];
 
 export default function AccountPage() {
-  const { user, logout } = useAuth()
-  const router = useRouter()
-  const [activeTab, setActiveTab] = useState("profile")
+  const { user, logout } = useAuth();
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState("profile");
 
   if (!user) {
-    return null
+    return null;
   }
-
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -54,7 +66,11 @@ export default function AccountPage() {
         </div>
       </div>
 
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+      <Tabs
+        value={activeTab}
+        onValueChange={setActiveTab}
+        className="space-y-6"
+      >
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="profile" className="flex items-center gap-2">
             <User className="h-4 w-4" />
@@ -98,7 +114,11 @@ export default function AccountPage() {
                 </div>
                 <div>
                   <Label htmlFor="phone">Phone</Label>
-                  <Input id="phone" type="tel" placeholder="+1 (555) 123-4567" />
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="+1 (555) 123-4567"
+                  />
                 </div>
                 <Button>Save Changes</Button>
               </CardContent>
@@ -147,7 +167,9 @@ export default function AccountPage() {
           <Card>
             <CardHeader>
               <CardTitle>Order History</CardTitle>
-              <CardDescription>View and Track Your Recent Orders</CardDescription>
+              <CardDescription>
+                View and Track Your Recent Orders
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -156,21 +178,38 @@ export default function AccountPage() {
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <h3 className="font-semibold">Order {order.id}</h3>
-                        <p className="text-sm text-gray-600">Placed on {order.date}</p>
+                        <p className="text-sm text-gray-600">
+                          Placed on {order.date}
+                        </p>
                       </div>
                       <div className="text-right">
-                        <Badge variant={order.status === "Delivered" ? "default" : "secondary"}>{order.status}</Badge>
-                        <p className="text-sm font-semibold mt-1">${order.total.toFixed(2)}</p>
+                        <Badge
+                          variant={
+                            order.status === "Delivered"
+                              ? "default"
+                              : "secondary"
+                          }
+                        >
+                          {order.status}
+                        </Badge>
+                        <p className="text-sm font-semibold mt-1">
+                          ${order.total.toFixed(2)}
+                        </p>
                       </div>
                     </div>
                     <Separator className="my-3" />
                     <div className="space-y-2">
                       {order.items.map((item, index) => (
-                        <div key={index} className="flex justify-between text-sm">
+                        <div
+                          key={index}
+                          className="flex justify-between text-sm"
+                        >
                           <span>
                             {item.name} × {item.quantity}
                           </span>
-                          <span>${(item.price * item.quantity).toFixed(2)}</span>
+                          <span>
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -203,8 +242,12 @@ export default function AccountPage() {
             <CardContent>
               <div className="text-center py-8">
                 <Heart className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Your Wishlist Is Empty</h3>
-                <p className="text-gray-600 mb-4">Save Items You Love To Buy Them Later</p>
+                <h3 className="text-lg font-semibold mb-2">
+                  Your Wishlist Is Empty
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Save Items You Love To Buy Them Later
+                </p>
                 <Button>Continue Shopping</Button>
               </div>
             </CardContent>
@@ -216,7 +259,9 @@ export default function AccountPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Account Security</CardTitle>
-                <CardDescription>Manage Your Password and Security Settings</CardDescription>
+                <CardDescription>
+                  Manage Your Password and Security Settings
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
@@ -241,13 +286,19 @@ export default function AccountPage() {
                   <CreditCard className="h-5 w-5" />
                   Payment Methods
                 </CardTitle>
-                <CardDescription>Manage Your Saved Payment Methods</CardDescription>
+                <CardDescription>
+                  Manage Your Saved Payment Methods
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="text-center py-8">
                   <CreditCard className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">No Payment Methods</h3>
-                  <p className="text-gray-600 mb-4">Add a Payment Method for Faster Checkout</p>
+                  <h3 className="text-lg font-semibold mb-2">
+                    No Payment Methods
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Add a Payment Method for Faster Checkout
+                  </p>
                   <Button>Add Payment Method</Button>
                 </div>
               </CardContent>
@@ -263,7 +314,9 @@ export default function AccountPage() {
               <div className="flex justify-between items-center">
                 <div>
                   <h3 className="font-semibold">Email Notifications</h3>
-                  <p className="text-sm text-gray-600">Receive Updates About your Orders and Promotions</p>
+                  <p className="text-sm text-gray-600">
+                    Receive Updates About your Orders and Promotions
+                  </p>
                 </div>
                 <Button variant="outline">Manage</Button>
               </div>
@@ -271,7 +324,9 @@ export default function AccountPage() {
               <div className="flex justify-between items-center">
                 <div>
                   <h3 className="font-semibold">Download Your Data</h3>
-                  <p className="text-sm text-gray-600">Get a Copy of your Account Data</p>
+                  <p className="text-sm text-gray-600">
+                    Get a Copy of your Account Data
+                  </p>
                 </div>
                 <Button variant="outline">Download</Button>
               </div>
@@ -279,7 +334,9 @@ export default function AccountPage() {
               <div className="flex justify-between items-center">
                 <div>
                   <h3 className="font-semibold text-red-600">Sign Out</h3>
-                  <p className="text-sm text-gray-600">Sign Out of your Account</p>
+                  <p className="text-sm text-gray-600">
+                    Sign Out of your Account
+                  </p>
                 </div>
                 <Button variant="destructive" onClick={logout}>
                   Sign Out
@@ -290,5 +347,5 @@ export default function AccountPage() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

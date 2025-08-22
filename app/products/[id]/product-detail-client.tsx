@@ -1,33 +1,50 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Heart, Share2, Star, Minus, Plus, ShoppingCart, Truck, Shield, RotateCcw, ArrowLeft } from "lucide-react"
-import { useCart } from "../../context/CartContext"
-import { useWishlist } from "../../context/WishlistContext"
-import { useToast } from "@/hooks/use-toast"
-import type { Product } from "@/lib/products-database"
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Heart,
+  Share2,
+  Star,
+  Minus,
+  Plus,
+  ShoppingCart,
+  Truck,
+  Shield,
+  RotateCcw,
+  ArrowLeft,
+} from "lucide-react";
+import { useCart } from "../../context/CartContext";
+import { useWishlist } from "../../context/WishlistContext";
+import { useToast } from "@/hooks/use-toast";
+import type { Product } from "@/lib/products-database";
 
 interface ProductDetailClientProps {
-  product: Product
+  product: Product;
 }
 
-export default function ProductDetailClient({ product }: ProductDetailClientProps) {
-  const [selectedImage, setSelectedImage] = useState(0)
-  const [selectedColor, setSelectedColor] = useState(product.colors[0])
-  const [selectedSize, setSelectedSize] = useState("")
-  const [quantity, setQuantity] = useState(1)
-  const [activeTab, setActiveTab] = useState("description")
+export default function ProductDetailClient({
+  product,
+}: ProductDetailClientProps) {
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+  const [selectedSize, setSelectedSize] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const [activeTab, setActiveTab] = useState("description");
 
-  const { addItem } = useCart()
-  const { items: wishlistItems, addItem: addToWishlist, removeItem: removeFromWishlist } = useWishlist()
-  const { toast } = useToast()
+  const { addItem } = useCart();
+  const {
+    items: wishlistItems,
+    addItem: addToWishlist,
+    removeItem: removeFromWishlist,
+  } = useWishlist();
+  const { toast } = useToast();
 
-  const isInWishlist = wishlistItems.some((item) => item.id === product.id)
+  const isInWishlist = wishlistItems.some((item) => item.id === product.id);
 
   const handleAddToCart = () => {
     if (!selectedSize && product.sizes.length > 0) {
@@ -35,8 +52,8 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         title: "Please select a size",
         description: "Choose a size before adding to cart",
         variant: "destructive",
-      })
-      return
+      });
+      return;
     }
 
     addItem({
@@ -47,21 +64,21 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       size: selectedSize,
       color: selectedColor.name,
       quantity,
-    })
+    });
 
     toast({
       title: "Added to cart",
       description: `${product.name} has been added to your cart`,
-    })
-  }
+    });
+  };
 
   const handleWishlistToggle = () => {
     if (isInWishlist) {
-      removeFromWishlist(product.id)
+      removeFromWishlist(product.id);
       toast({
         title: "Removed from wishlist",
         description: `${product.name} has been removed from your wishlist`,
-      })
+      });
     } else {
       addToWishlist({
         id: product.id,
@@ -69,13 +86,13 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         price: product.price,
         image: product.images[0],
         category: product.category,
-      })
+      });
       toast({
         title: "Added to wishlist",
         description: `${product.name} has been added to your wishlist`,
-      })
+      });
     }
-  }
+  };
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -84,19 +101,19 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
           title: product.name,
           text: product.description,
           url: window.location.href,
-        })
+        });
       } catch (error) {
-        console.log("Error sharing:", error)
+        console.log("Error sharing:", error);
       }
     } else {
       // Fallback: copy to clipboard
-      navigator.clipboard.writeText(window.location.href)
+      navigator.clipboard.writeText(window.location.href);
       toast({
         title: "Link copied",
         description: "Product link has been copied to clipboard",
-      })
+      });
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -111,7 +128,10 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             Products
           </Link>
           <span>/</span>
-          <Link href={`/${product.category}`} className="hover:text-rose-600 capitalize">
+          <Link
+            href={`/${product.category}`}
+            className="hover:text-rose-600 capitalize"
+          >
             {product.category}
           </Link>
           <span>/</span>
@@ -144,7 +164,9 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     key={index}
                     onClick={() => setSelectedImage(index)}
                     className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 ${
-                      selectedImage === index ? "border-rose-600" : "border-transparent"
+                      selectedImage === index
+                        ? "border-rose-600"
+                        : "border-transparent"
                     }`}
                   >
                     <img
@@ -166,7 +188,9 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 {product.isSale && <Badge className="bg-rose-600">Sale</Badge>}
               </div>
 
-              <h1 className="text-3xl font-playfair font-bold text-gray-900 mb-4">{product.name}</h1>
+              <h1 className="text-3xl font-playfair font-bold text-gray-900 mb-4">
+                {product.name}
+              </h1>
 
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex items-center gap-1">
@@ -174,7 +198,9 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     <Star
                       key={i}
                       className={`h-5 w-5 ${
-                        i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+                        i < Math.floor(product.rating)
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-gray-300"
                       }`}
                     />
                   ))}
@@ -185,28 +211,40 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               </div>
 
               <div className="flex items-center gap-4 mb-6">
-                <span className="text-3xl font-bold text-gray-900">${product.price}</span>
+                <span className="text-3xl font-bold text-gray-900">
+                  ${product.price}
+                </span>
                 {product.originalPrice && (
                   <>
-                    <span className="text-xl text-gray-500 line-through">${product.originalPrice}</span>
-                    <Badge className="bg-rose-600">Save ${(product.originalPrice - product.price).toFixed(2)}</Badge>
+                    <span className="text-xl text-gray-500 line-through">
+                      ${product.originalPrice}
+                    </span>
+                    <Badge className="bg-rose-600">
+                      Save ${(product.originalPrice - product.price).toFixed(2)}
+                    </Badge>
                   </>
                 )}
               </div>
 
-              <p className="text-gray-600 leading-relaxed mb-6">{product.description}</p>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                {product.description}
+              </p>
             </div>
 
             {/* Color Selection */}
             <div>
-              <h3 className="font-semibold mb-3">Color: {selectedColor.name}</h3>
+              <h3 className="font-semibold mb-3">
+                Color: {selectedColor.name}
+              </h3>
               <div className="flex gap-3">
                 {product.colors.map((color) => (
                   <button
                     key={color.value}
                     onClick={() => setSelectedColor(color)}
                     className={`w-10 h-10 rounded-full border-2 ${
-                      selectedColor.value === color.value ? "border-rose-600 ring-2 ring-rose-200" : "border-gray-300"
+                      selectedColor.value === color.value
+                        ? "border-rose-600 ring-2 ring-rose-200"
+                        : "border-gray-300"
                     }`}
                     style={{ backgroundColor: color.hex }}
                     title={color.name}
@@ -242,18 +280,25 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               <h3 className="font-semibold mb-3">Quantity</h3>
               <div className="flex items-center gap-4">
                 <div className="flex items-center border rounded-md">
-                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-2 hover:bg-gray-100">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="p-2 hover:bg-gray-100"
+                  >
                     <Minus className="h-4 w-4" />
                   </button>
                   <span className="px-4 py-2 font-medium">{quantity}</span>
                   <button
-                    onClick={() => setQuantity(Math.min(product.stockCount, quantity + 1))}
+                    onClick={() =>
+                      setQuantity(Math.min(product.stockCount, quantity + 1))
+                    }
                     className="p-2 hover:bg-gray-100"
                   >
                     <Plus className="h-4 w-4" />
                   </button>
                 </div>
-                <span className="text-sm text-gray-600">Only {product.stockCount} left in stock</span>
+                <span className="text-sm text-gray-600">
+                  Only {product.stockCount} left in stock
+                </span>
               </div>
             </div>
 
@@ -269,8 +314,14 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               </Button>
 
               <div className="flex gap-4">
-                <Button variant="outline" onClick={handleWishlistToggle} className="flex-1 bg-transparent">
-                  <Heart className={`h-5 w-5 mr-2 ${isInWishlist ? "fill-current text-rose-600" : ""}`} />
+                <Button
+                  variant="outline"
+                  onClick={handleWishlistToggle}
+                  className="flex-1 bg-transparent"
+                >
+                  <Heart
+                    className={`h-5 w-5 mr-2 ${isInWishlist ? "fill-current text-rose-600" : ""}`}
+                  />
                   {isInWishlist ? "Remove from Wishlist" : "Add to Wishlist"}
                 </Button>
 
@@ -308,14 +359,20 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="description">Description</TabsTrigger>
               <TabsTrigger value="specifications">Specifications</TabsTrigger>
-              <TabsTrigger value="reviews">Reviews ({product.reviewCount})</TabsTrigger>
+              <TabsTrigger value="reviews">
+                Reviews ({product.reviewCount})
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="description" className="mt-6">
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-4">Product Description</h3>
-                  <p className="text-gray-600 leading-relaxed mb-6">{product.description}</p>
+                  <h3 className="text-xl font-semibold mb-4">
+                    Product Description
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    {product.description}
+                  </p>
 
                   <h4 className="font-semibold mb-3">Features:</h4>
                   <ul className="space-y-2">
@@ -335,12 +392,19 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold mb-4">Specifications</h3>
                   <div className="space-y-4">
-                    {Object.entries(product.specifications).map(([key, value]) => (
-                      <div key={key} className="flex justify-between py-2 border-b border-gray-100">
-                        <span className="font-medium text-gray-900">{key}:</span>
-                        <span className="text-gray-600">{value}</span>
-                      </div>
-                    ))}
+                    {Object.entries(product.specifications).map(
+                      ([key, value]) => (
+                        <div
+                          key={key}
+                          className="flex justify-between py-2 border-b border-gray-100"
+                        >
+                          <span className="font-medium text-gray-900">
+                            {key}:
+                          </span>
+                          <span className="text-gray-600">{value}</span>
+                        </div>
+                      )
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -360,18 +424,26 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                         <Star
                           key={i}
                           className={`h-6 w-6 ${
-                            i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+                            i < Math.floor(product.rating)
+                              ? "fill-yellow-400 text-yellow-400"
+                              : "text-gray-300"
                           }`}
                         />
                       ))}
                     </div>
-                    <span className="text-lg font-semibold">{product.rating}</span>
-                    <span className="text-gray-600">({product.reviewCount} reviews)</span>
+                    <span className="text-lg font-semibold">
+                      {product.rating}
+                    </span>
+                    <span className="text-gray-600">
+                      ({product.reviewCount} reviews)
+                    </span>
                   </div>
 
                   <div className="text-center py-8 text-gray-500">
                     <p>Reviews Feature Coming Soon !</p>
-                    <p className="text-sm">Be the first to review this product.</p>
+                    <p className="text-sm">
+                      Be the first to review this product.
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -380,5 +452,5 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         </div>
       </div>
     </div>
-  )
+  );
 }

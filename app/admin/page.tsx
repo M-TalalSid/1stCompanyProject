@@ -1,19 +1,46 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Plus, Edit, Trash2, Package, Users, ShoppingCart, TrendingUp } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
-import { useRouter } from "next/navigation"
-import { useAuth } from "../context/AuthContext"
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  Plus,
+  Edit,
+  Trash2,
+  Package,
+  Users,
+  ShoppingCart,
+  TrendingUp,
+} from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../context/AuthContext";
 
 // Mock data
 const mockProducts = [
@@ -47,7 +74,7 @@ const mockProducts = [
     status: "out_of_stock",
     sales: 67,
   },
-]
+];
 
 const mockOrders = [
   {
@@ -74,29 +101,26 @@ const mockOrders = [
     total: 299.99,
     items: 1,
   },
-]
+];
 
 export default function AdminPage() {
-  const { callAdminApi } = useAuth()
-  const router = useRouter()
+  const { callAdminApi } = useAuth();
+  const router = useRouter();
 
-   useEffect(() => {
-  async function fetchData() {
-    const result = await callAdminApi()
-    if (!result.success) {
-      console.warn("Access denied:", result.message)
-      router.push("/")  // Redirect non-admin users to home or login
-    } else {
-      console.log("Admin message:", result.message)
+  useEffect(() => {
+    async function fetchData() {
+      const result = await callAdminApi();
+      if (!result.success) {
+        console.warn("Access denied:", result.message);
+        router.push("/"); // Redirect non-admin users to home or login
+      } else {
+        console.log("Admin message:", result.message);
+      }
     }
-  }
 
-  fetchData()
-}, [callAdminApi, router])
+    fetchData();
+  }, [callAdminApi, router]);
 
-
-
-  
   const [newProduct, setNewProduct] = useState({
     name: "",
     category: "",
@@ -105,9 +129,9 @@ export default function AdminPage() {
     stock: "",
     description: "",
     images: "",
-  })
+  });
 
-  const { toast } = useToast()
+  const { toast } = useToast();
 
   const handleAddProduct = () => {
     if (!newProduct.name || !newProduct.category || !newProduct.price) {
@@ -115,14 +139,14 @@ export default function AdminPage() {
         title: "Please fill in required fields",
         description: "Name, category, and price are required.",
         variant: "destructive",
-      })
-      return
+      });
+      return;
     }
 
     toast({
       title: "Product added successfully!",
       description: `${newProduct.name} has been added to inventory.`,
-    })
+    });
 
     setNewProduct({
       name: "",
@@ -132,21 +156,25 @@ export default function AdminPage() {
       stock: "",
       description: "",
       images: "",
-    })
-  }
+    });
+  };
 
   const handleUpdateOrderStatus = (orderId: string, newStatus: string) => {
     toast({
       title: "Order status updated",
       description: `Order ${orderId} status changed to ${newStatus}.`,
-    })
-  }
+    });
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-playfair font-light mb-2">Admin Dashboard</h1>
-        <p className="text-gray-600 text-lg">Manage your Inventory and Orders</p>
+        <h1 className="text-4xl font-playfair font-light mb-2">
+          Admin Dashboard
+        </h1>
+        <p className="text-gray-600 text-lg">
+          Manage your Inventory and Orders
+        </p>
       </div>
 
       {/* Stats Cards */}
@@ -225,7 +253,9 @@ export default function AdminPage() {
           <Card>
             <CardHeader>
               <CardTitle>Product Inventory</CardTitle>
-              <CardDescription>Manage your product catalog and inventory levels</CardDescription>
+              <CardDescription>
+                Manage your product catalog and inventory levels
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
@@ -243,15 +273,25 @@ export default function AdminPage() {
                 <TableBody>
                   {mockProducts.map((product) => (
                     <TableRow key={product.id}>
-                      <TableCell className="font-medium">{product.name}</TableCell>
+                      <TableCell className="font-medium">
+                        {product.name}
+                      </TableCell>
                       <TableCell className="capitalize">
                         {product.category} / {product.subcategory}
                       </TableCell>
                       <TableCell>${product.price}</TableCell>
                       <TableCell>{product.stock}</TableCell>
                       <TableCell>
-                        <Badge variant={product.status === "active" ? "default" : "destructive"}>
-                          {product.status === "active" ? "Active" : "Out of Stock"}
+                        <Badge
+                          variant={
+                            product.status === "active"
+                              ? "default"
+                              : "destructive"
+                          }
+                        >
+                          {product.status === "active"
+                            ? "Active"
+                            : "Out of Stock"}
                         </Badge>
                       </TableCell>
                       <TableCell>{product.sales}</TableCell>
@@ -301,13 +341,17 @@ export default function AdminPage() {
                       <TableCell>
                         <Select
                           defaultValue={order.status}
-                          onValueChange={(value) => handleUpdateOrderStatus(order.id, value)}
+                          onValueChange={(value) =>
+                            handleUpdateOrderStatus(order.id, value)
+                          }
                         >
                           <SelectTrigger className="w-32">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="processing">Processing</SelectItem>
+                            <SelectItem value="processing">
+                              Processing
+                            </SelectItem>
                             <SelectItem value="shipped">Shipped</SelectItem>
                             <SelectItem value="delivered">Delivered</SelectItem>
                             <SelectItem value="cancelled">Cancelled</SelectItem>
@@ -333,7 +377,9 @@ export default function AdminPage() {
           <Card>
             <CardHeader>
               <CardTitle>Add New Product</CardTitle>
-              <CardDescription>Add a new product to your inventory</CardDescription>
+              <CardDescription>
+                Add a new product to your inventory
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -342,7 +388,9 @@ export default function AdminPage() {
                   <Input
                     id="productName"
                     value={newProduct.name}
-                    onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
+                    onChange={(e) =>
+                      setNewProduct({ ...newProduct, name: e.target.value })
+                    }
                     placeholder="Enter product name"
                   />
                 </div>
@@ -354,7 +402,9 @@ export default function AdminPage() {
                     type="number"
                     step="0.01"
                     value={newProduct.price}
-                    onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
+                    onChange={(e) =>
+                      setNewProduct({ ...newProduct, price: e.target.value })
+                    }
                     placeholder="0.00"
                   />
                 </div>
@@ -363,7 +413,9 @@ export default function AdminPage() {
                   <Label htmlFor="category">Category *</Label>
                   <Select
                     value={newProduct.category}
-                    onValueChange={(value) => setNewProduct({ ...newProduct, category: value })}
+                    onValueChange={(value) =>
+                      setNewProduct({ ...newProduct, category: value })
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select category" />
@@ -382,7 +434,12 @@ export default function AdminPage() {
                   <Input
                     id="subcategory"
                     value={newProduct.subcategory}
-                    onChange={(e) => setNewProduct({ ...newProduct, subcategory: e.target.value })}
+                    onChange={(e) =>
+                      setNewProduct({
+                        ...newProduct,
+                        subcategory: e.target.value,
+                      })
+                    }
                     placeholder="e.g., tops, dresses, shoes"
                   />
                 </div>
@@ -393,7 +450,9 @@ export default function AdminPage() {
                     id="stock"
                     type="number"
                     value={newProduct.stock}
-                    onChange={(e) => setNewProduct({ ...newProduct, stock: e.target.value })}
+                    onChange={(e) =>
+                      setNewProduct({ ...newProduct, stock: e.target.value })
+                    }
                     placeholder="0"
                   />
                 </div>
@@ -403,7 +462,9 @@ export default function AdminPage() {
                   <Input
                     id="images"
                     value={newProduct.images}
-                    onChange={(e) => setNewProduct({ ...newProduct, images: e.target.value })}
+                    onChange={(e) =>
+                      setNewProduct({ ...newProduct, images: e.target.value })
+                    }
                     placeholder="Comma-separated image URLs"
                   />
                 </div>
@@ -414,13 +475,21 @@ export default function AdminPage() {
                 <Textarea
                   id="description"
                   value={newProduct.description}
-                  onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
+                  onChange={(e) =>
+                    setNewProduct({
+                      ...newProduct,
+                      description: e.target.value,
+                    })
+                  }
                   placeholder="Enter detailed product description"
                   className="min-h-32"
                 />
               </div>
 
-              <Button onClick={handleAddProduct} className="bg-rose-600 hover:bg-rose-700">
+              <Button
+                onClick={handleAddProduct}
+                className="bg-rose-600 hover:bg-rose-700"
+              >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Product
               </Button>
@@ -429,5 +498,5 @@ export default function AdminPage() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

@@ -1,51 +1,63 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Heart } from "lucide-react"
-import { getAllProducts } from "@/lib/products-database"
-import { useWishlist } from "../context/WishlistContext"
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Heart } from "lucide-react";
+import { getAllProducts } from "@/lib/products-database";
+import { useWishlist } from "../context/WishlistContext";
 
 export default function ProductsPage() {
-  const [sortBy, setSortBy] = useState("featured")
-  const [filterBy, setFilterBy] = useState("all")
+  const [sortBy, setSortBy] = useState("featured");
+  const [filterBy, setFilterBy] = useState("all");
 
-  const { items: wishlistItems, addItem: addToWishlist, removeItem: removeFromWishlist } = useWishlist()
-  const allProducts = getAllProducts()
+  const {
+    items: wishlistItems,
+    addItem: addToWishlist,
+    removeItem: removeFromWishlist,
+  } = useWishlist();
+  const allProducts = getAllProducts();
 
   // Filter products
-  let filteredProducts = allProducts
+  let filteredProducts = allProducts;
   if (filterBy !== "all") {
-    filteredProducts = allProducts.filter((product) => product.category === filterBy)
+    filteredProducts = allProducts.filter(
+      (product) => product.category === filterBy
+    );
   }
 
   // Sort products
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     switch (sortBy) {
       case "price-low":
-        return a.price - b.price
+        return a.price - b.price;
       case "price-high":
-        return b.price - a.price
+        return b.price - a.price;
       case "rating":
-        return b.rating - a.rating
+        return b.rating - a.rating;
       case "newest":
-        return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0)
+        return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0);
       default:
-        return 0
+        return 0;
     }
-  })
+  });
 
   const isInWishlist = (productId: number) => {
-    return wishlistItems.some((item) => item.id === productId)
-  }
+    return wishlistItems.some((item) => item.id === productId);
+  };
 
   const handleWishlistToggle = (product: any) => {
     if (isInWishlist(product.id)) {
-      removeFromWishlist(product.id)
+      removeFromWishlist(product.id);
     } else {
       addToWishlist({
         id: product.id,
@@ -53,17 +65,21 @@ export default function ProductsPage() {
         price: product.price,
         image: product.images[0],
         category: product.category,
-      })
+      });
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-playfair font-bold text-gray-900 mb-4">All Products</h1>
-          <p className="text-xl text-gray-600 mb-6">Discover our complete collection of Premium Fashion Pieces</p>
+          <h1 className="text-4xl font-playfair font-bold text-gray-900 mb-4">
+            All Products
+          </h1>
+          <p className="text-xl text-gray-600 mb-6">
+            Discover our complete collection of Premium Fashion Pieces
+          </p>
 
           {/* Filters and Sort */}
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
@@ -83,7 +99,9 @@ export default function ProductsPage() {
             </div>
 
             <div className="flex gap-4 items-center">
-              <span className="text-sm text-gray-600">{sortedProducts.length} products</span>
+              <span className="text-sm text-gray-600">
+                {sortedProducts.length} products
+              </span>
               <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger className="w-48">
                   <SelectValue placeholder="Sort by" />
@@ -103,7 +121,10 @@ export default function ProductsPage() {
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {sortedProducts.map((product) => (
-            <Card key={product.id} className="group hover:shadow-lg transition-shadow">
+            <Card
+              key={product.id}
+              className="group hover:shadow-lg transition-shadow"
+            >
               <CardContent className="p-0">
                 <div className="relative">
                   <Link href={`/products/${product.id}`}>
@@ -125,10 +146,20 @@ export default function ProductsPage() {
                     }`}
                     onClick={() => handleWishlistToggle(product)}
                   >
-                    <Heart className={`h-5 w-5 ${isInWishlist(product.id) ? "fill-current" : ""}`} />
+                    <Heart
+                      className={`h-5 w-5 ${isInWishlist(product.id) ? "fill-current" : ""}`}
+                    />
                   </Button>
-                  {product.isSale && <Badge className="absolute top-2 left-2 bg-rose-600">Sale</Badge>}
-                  {product.isNew && <Badge className="absolute top-2 left-2 bg-green-600">New</Badge>}
+                  {product.isSale && (
+                    <Badge className="absolute top-2 left-2 bg-rose-600">
+                      Sale
+                    </Badge>
+                  )}
+                  {product.isNew && (
+                    <Badge className="absolute top-2 left-2 bg-green-600">
+                      New
+                    </Badge>
+                  )}
                 </div>
                 <div className="p-4">
                   <Link href={`/products/${product.id}`}>
@@ -141,14 +172,20 @@ export default function ProductsPage() {
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-gray-900">${product.price}</span>
+                      <span className="font-bold text-gray-900">
+                        ${product.price}
+                      </span>
                       {product.originalPrice && (
-                        <span className="text-sm text-gray-500 line-through">${product.originalPrice}</span>
+                        <span className="text-sm text-gray-500 line-through">
+                          ${product.originalPrice}
+                        </span>
                       )}
                     </div>
                     <div className="flex items-center gap-1">
                       <span className="text-sm text-gray-600">★</span>
-                      <span className="text-sm text-gray-600">{product.rating}</span>
+                      <span className="text-sm text-gray-600">
+                        {product.rating}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -165,5 +202,5 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

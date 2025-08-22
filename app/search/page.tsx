@@ -1,136 +1,165 @@
-"use client"
+"use client";
 
-import { useState, useMemo } from "react"
-import { useSearchParams } from "next/navigation"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Slider } from "@/components/ui/slider"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Heart, Filter, X, Search } from "lucide-react"
-import { getAllProducts, type Product } from "@/lib/products-database"
-import { useWishlist } from "../context/WishlistContext"
+import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Heart, Filter, X, Search } from "lucide-react";
+import { getAllProducts, type Product } from "@/lib/products-database";
+import { useWishlist } from "../context/WishlistContext";
 
 export default function SearchPage() {
-  const searchParams = useSearchParams()
-  const initialQuery = searchParams.get("q") || ""
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get("q") || "";
 
-  const [searchQuery, setSearchQuery] = useState(initialQuery)
-  const [priceRange, setPriceRange] = useState([0, 500])
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-  const [selectedColors, setSelectedColors] = useState<string[]>([])
-  const [selectedSizes, setSelectedSizes] = useState<string[]>([])
-  const [sortBy, setSortBy] = useState("relevance")
-  const [showFilters, setShowFilters] = useState(false)
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
+  const [priceRange, setPriceRange] = useState([0, 500]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState("relevance");
+  const [showFilters, setShowFilters] = useState(false);
 
-  const { items: wishlistItems, addItem: addToWishlist, removeItem: removeFromWishlist } = useWishlist()
-  const allProducts = getAllProducts()
+  const {
+    items: wishlistItems,
+    addItem: addToWishlist,
+    removeItem: removeFromWishlist,
+  } = useWishlist();
+  const allProducts = getAllProducts();
 
   // Get unique filter options
-  const categories = Array.from(new Set(allProducts.map((p) => p.category)))
-  const colors = Array.from(new Set(allProducts.flatMap((p) => p.colors.map((c) => c.name))))
-  const sizes = Array.from(new Set(allProducts.flatMap((p) => p.sizes)))
+  const categories = Array.from(new Set(allProducts.map((p) => p.category)));
+  const colors = Array.from(
+    new Set(allProducts.flatMap((p) => p.colors.map((c) => c.name)))
+  );
+  const sizes = Array.from(new Set(allProducts.flatMap((p) => p.sizes)));
 
   // Filter and search products
   const filteredProducts = useMemo(() => {
-    let filtered = allProducts
+    let filtered = allProducts;
 
     // Text search
     if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase()
+      const query = searchQuery.toLowerCase();
       filtered = filtered.filter(
         (product) =>
           product.name.toLowerCase().includes(query) ||
           product.description.toLowerCase().includes(query) ||
           product.category.toLowerCase().includes(query) ||
           product.subcategory.toLowerCase().includes(query) ||
-          product.tags.some((tag) => tag.toLowerCase().includes(query)),
-      )
+          product.tags.some((tag) => tag.toLowerCase().includes(query))
+      );
     }
 
     // Category filter
     if (selectedCategories.length > 0) {
-      filtered = filtered.filter((product) => selectedCategories.includes(product.category))
+      filtered = filtered.filter((product) =>
+        selectedCategories.includes(product.category)
+      );
     }
 
     // Color filter
     if (selectedColors.length > 0) {
-      filtered = filtered.filter((product) => product.colors.some((color) => selectedColors.includes(color.name)))
+      filtered = filtered.filter((product) =>
+        product.colors.some((color) => selectedColors.includes(color.name))
+      );
     }
 
     // Size filter
     if (selectedSizes.length > 0) {
-      filtered = filtered.filter((product) => product.sizes.some((size) => selectedSizes.includes(size)))
+      filtered = filtered.filter((product) =>
+        product.sizes.some((size) => selectedSizes.includes(size))
+      );
     }
 
     // Price filter
-    filtered = filtered.filter((product) => product.price >= priceRange[0] && product.price <= priceRange[1])
+    filtered = filtered.filter(
+      (product) =>
+        product.price >= priceRange[0] && product.price <= priceRange[1]
+    );
 
     // Sort products
     switch (sortBy) {
       case "price-low":
-        filtered.sort((a, b) => a.price - b.price)
-        break
+        filtered.sort((a, b) => a.price - b.price);
+        break;
       case "price-high":
-        filtered.sort((a, b) => b.price - a.price)
-        break
+        filtered.sort((a, b) => b.price - a.price);
+        break;
       case "rating":
-        filtered.sort((a, b) => b.rating - a.rating)
-        break
+        filtered.sort((a, b) => b.rating - a.rating);
+        break;
       case "newest":
-        filtered.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0))
-        break
+        filtered.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
+        break;
       default:
         // Keep original order for relevance
-        break
+        break;
     }
 
-    return filtered
-  }, [searchQuery, selectedCategories, selectedColors, selectedSizes, priceRange, sortBy, allProducts])
+    return filtered;
+  }, [
+    searchQuery,
+    selectedCategories,
+    selectedColors,
+    selectedSizes,
+    priceRange,
+    sortBy,
+    allProducts,
+  ]);
 
   const handleCategoryChange = (category: string, checked: boolean) => {
     if (checked) {
-      setSelectedCategories([...selectedCategories, category])
+      setSelectedCategories([...selectedCategories, category]);
     } else {
-      setSelectedCategories(selectedCategories.filter((c) => c !== category))
+      setSelectedCategories(selectedCategories.filter((c) => c !== category));
     }
-  }
+  };
 
   const handleColorChange = (color: string, checked: boolean) => {
     if (checked) {
-      setSelectedColors([...selectedColors, color])
+      setSelectedColors([...selectedColors, color]);
     } else {
-      setSelectedColors(selectedColors.filter((c) => c !== color))
+      setSelectedColors(selectedColors.filter((c) => c !== color));
     }
-  }
+  };
 
   const handleSizeChange = (size: string, checked: boolean) => {
     if (checked) {
-      setSelectedSizes([...selectedSizes, size])
+      setSelectedSizes([...selectedSizes, size]);
     } else {
-      setSelectedSizes(selectedSizes.filter((s) => s !== size))
+      setSelectedSizes(selectedSizes.filter((s) => s !== size));
     }
-  }
+  };
 
   const clearAllFilters = () => {
-    setSelectedCategories([])
-    setSelectedColors([])
-    setSelectedSizes([])
-    setPriceRange([0, 500])
-    setSortBy("relevance")
-  }
+    setSelectedCategories([]);
+    setSelectedColors([]);
+    setSelectedSizes([]);
+    setPriceRange([0, 500]);
+    setSortBy("relevance");
+  };
 
   const isInWishlist = (productId: number) => {
-    return wishlistItems.some((item) => item.id === productId)
-  }
+    return wishlistItems.some((item) => item.id === productId);
+  };
 
   const handleWishlistToggle = (product: Product) => {
     if (isInWishlist(product.id)) {
-      removeFromWishlist(product.id)
+      removeFromWishlist(product.id);
     } else {
       addToWishlist({
         id: product.id,
@@ -138,9 +167,9 @@ export default function SearchPage() {
         price: product.price,
         image: product.images[0],
         category: product.category,
-      })
+      });
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -150,15 +179,22 @@ export default function SearchPage() {
           <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
             <div>
               <h1 className="text-3xl font-playfair font-bold text-gray-900 mb-2">
-                {searchQuery ? `Search Results for "${searchQuery}"` : "All Products"}
+                {searchQuery
+                  ? `Search Results for "${searchQuery}"`
+                  : "All Products"}
               </h1>
               <p className="text-gray-600">
-                {filteredProducts.length} product{filteredProducts.length !== 1 ? "s" : ""} found
+                {filteredProducts.length} product
+                {filteredProducts.length !== 1 ? "s" : ""} found
               </p>
             </div>
 
             <div className="flex gap-4 items-center">
-              <Button variant="outline" onClick={() => setShowFilters(!showFilters)} className="md:hidden">
+              <Button
+                variant="outline"
+                onClick={() => setShowFilters(!showFilters)}
+                className="md:hidden"
+              >
                 <Filter className="h-4 w-4 mr-2" />
                 Filters
               </Button>
@@ -195,7 +231,9 @@ export default function SearchPage() {
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar */}
-          <div className={`lg:w-64 ${showFilters ? "block" : "hidden lg:block"}`}>
+          <div
+            className={`lg:w-64 ${showFilters ? "block" : "hidden lg:block"}`}
+          >
             <Card className="sticky top-4">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
@@ -206,29 +244,43 @@ export default function SearchPage() {
                 </div>
 
                 {/* Active Filters */}
-                {(selectedCategories.length > 0 || selectedColors.length > 0 || selectedSizes.length > 0) && (
+                {(selectedCategories.length > 0 ||
+                  selectedColors.length > 0 ||
+                  selectedSizes.length > 0) && (
                   <div className="mb-6">
                     <h4 className="font-medium mb-2">Active Filters</h4>
                     <div className="flex flex-wrap gap-2">
                       {selectedCategories.map((category) => (
-                        <Badge key={category} variant="secondary" className="capitalize">
+                        <Badge
+                          key={category}
+                          variant="secondary"
+                          className="capitalize"
+                        >
                           {category}
                           <X
                             className="h-3 w-3 ml-1 cursor-pointer"
-                            onClick={() => handleCategoryChange(category, false)}
+                            onClick={() =>
+                              handleCategoryChange(category, false)
+                            }
                           />
                         </Badge>
                       ))}
                       {selectedColors.map((color) => (
                         <Badge key={color} variant="secondary">
                           {color}
-                          <X className="h-3 w-3 ml-1 cursor-pointer" onClick={() => handleColorChange(color, false)} />
+                          <X
+                            className="h-3 w-3 ml-1 cursor-pointer"
+                            onClick={() => handleColorChange(color, false)}
+                          />
                         </Badge>
                       ))}
                       {selectedSizes.map((size) => (
                         <Badge key={size} variant="secondary">
                           {size}
-                          <X className="h-3 w-3 ml-1 cursor-pointer" onClick={() => handleSizeChange(size, false)} />
+                          <X
+                            className="h-3 w-3 ml-1 cursor-pointer"
+                            onClick={() => handleSizeChange(size, false)}
+                          />
                         </Badge>
                       ))}
                     </div>
@@ -252,16 +304,26 @@ export default function SearchPage() {
 
                 {/* Categories */}
                 <div className="mb-6">
-                  <Label className="text-sm font-medium mb-3 block">Category</Label>
+                  <Label className="text-sm font-medium mb-3 block">
+                    Category
+                  </Label>
                   <div className="space-y-2">
                     {categories.map((category) => (
-                      <div key={category} className="flex items-center space-x-2">
+                      <div
+                        key={category}
+                        className="flex items-center space-x-2"
+                      >
                         <Checkbox
                           id={category}
                           checked={selectedCategories.includes(category)}
-                          onCheckedChange={(checked) => handleCategoryChange(category, checked as boolean)}
+                          onCheckedChange={(checked) =>
+                            handleCategoryChange(category, checked as boolean)
+                          }
                         />
-                        <Label htmlFor={category} className="text-sm capitalize cursor-pointer">
+                        <Label
+                          htmlFor={category}
+                          className="text-sm capitalize cursor-pointer"
+                        >
                           {category}
                         </Label>
                       </div>
@@ -271,16 +333,23 @@ export default function SearchPage() {
 
                 {/* Colors */}
                 <div className="mb-6">
-                  <Label className="text-sm font-medium mb-3 block">Color</Label>
+                  <Label className="text-sm font-medium mb-3 block">
+                    Color
+                  </Label>
                   <div className="space-y-2">
                     {colors.map((color) => (
                       <div key={color} className="flex items-center space-x-2">
                         <Checkbox
                           id={color}
                           checked={selectedColors.includes(color)}
-                          onCheckedChange={(checked) => handleColorChange(color, checked as boolean)}
+                          onCheckedChange={(checked) =>
+                            handleColorChange(color, checked as boolean)
+                          }
                         />
-                        <Label htmlFor={color} className="text-sm cursor-pointer">
+                        <Label
+                          htmlFor={color}
+                          className="text-sm cursor-pointer"
+                        >
                           {color}
                         </Label>
                       </div>
@@ -297,9 +366,14 @@ export default function SearchPage() {
                         <Checkbox
                           id={size}
                           checked={selectedSizes.includes(size)}
-                          onCheckedChange={(checked) => handleSizeChange(size, checked as boolean)}
+                          onCheckedChange={(checked) =>
+                            handleSizeChange(size, checked as boolean)
+                          }
                         />
-                        <Label htmlFor={size} className="text-sm cursor-pointer">
+                        <Label
+                          htmlFor={size}
+                          className="text-sm cursor-pointer"
+                        >
                           {size}
                         </Label>
                       </div>
@@ -317,14 +391,21 @@ export default function SearchPage() {
                 <div className="text-gray-400 mb-4">
                   <Search className="h-16 w-16 mx-auto" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No Products Found</h3>
-                <p className="text-gray-600 mb-4">Try adjusting your search criteria or Browse our categories</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  No Products Found
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Try adjusting your search criteria or Browse our categories
+                </p>
                 <Button onClick={clearAllFilters}>Clear Filters</Button>
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredProducts.map((product) => (
-                  <Card key={product.id} className="group hover:shadow-lg transition-shadow">
+                  <Card
+                    key={product.id}
+                    className="group hover:shadow-lg transition-shadow"
+                  >
                     <CardContent className="p-0">
                       <div className="relative">
                         <Link href={`/products/${product.id}`}>
@@ -346,10 +427,20 @@ export default function SearchPage() {
                           }`}
                           onClick={() => handleWishlistToggle(product)}
                         >
-                          <Heart className={`h-5 w-5 ${isInWishlist(product.id) ? "fill-current" : ""}`} />
+                          <Heart
+                            className={`h-5 w-5 ${isInWishlist(product.id) ? "fill-current" : ""}`}
+                          />
                         </Button>
-                        {product.isSale && <Badge className="absolute top-2 left-2 bg-rose-600">Sale</Badge>}
-                        {product.isNew && <Badge className="absolute top-2 left-2 bg-green-600">New</Badge>}
+                        {product.isSale && (
+                          <Badge className="absolute top-2 left-2 bg-rose-600">
+                            Sale
+                          </Badge>
+                        )}
+                        {product.isNew && (
+                          <Badge className="absolute top-2 left-2 bg-green-600">
+                            New
+                          </Badge>
+                        )}
                       </div>
                       <div className="p-4">
                         <Link href={`/products/${product.id}`}>
@@ -362,14 +453,20 @@ export default function SearchPage() {
                         </p>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <span className="font-bold text-gray-900">${product.price}</span>
+                            <span className="font-bold text-gray-900">
+                              ${product.price}
+                            </span>
                             {product.originalPrice && (
-                              <span className="text-sm text-gray-500 line-through">${product.originalPrice}</span>
+                              <span className="text-sm text-gray-500 line-through">
+                                ${product.originalPrice}
+                              </span>
                             )}
                           </div>
                           <div className="flex items-center gap-1">
                             <span className="text-sm text-gray-600">★</span>
-                            <span className="text-sm text-gray-600">{product.rating}</span>
+                            <span className="text-sm text-gray-600">
+                              {product.rating}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -382,5 +479,5 @@ export default function SearchPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

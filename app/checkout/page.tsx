@@ -36,7 +36,7 @@ export default function CheckoutPage() {
     city: "",
     state: "",
     zipCode: "",
-    country: "US",
+    country: "PK", // Default to Pakistan, change as needed
   });
 
   const [paymentMethod, setPaymentMethod] = useState("card");
@@ -71,6 +71,37 @@ export default function CheckoutPage() {
     return null;
   }
 
+  // Define states/provinces/emirates for each country
+  const countryStates: Record<string, string[]> = {
+    PK: [
+      "Punjab",
+      "Sindh",
+      "Khyber Pakhtunkhwa",
+      "Balochistan",
+      "Islamabad Capital Territory",
+      "Gilgit-Baltistan",
+      "Azad Jammu and Kashmir",
+    ],
+    AE: [
+      "Abu Dhabi",
+      "Ajman",
+      "Dubai",
+      "Fujairah",
+      "Ras Al Khaimah",
+      "Sharjah",
+      "Umm Al Quwain",
+    ],
+  };
+
+  // Handle country change to reset state if necessary
+  const handleCountryChange = (value: string) => {
+    setShippingInfo({
+      ...shippingInfo,
+      country: value,
+      state: "", // Reset state when country changes
+    });
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Checkout</h1>
@@ -82,7 +113,7 @@ export default function CheckoutPage() {
             {/* Shipping Information */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="text-2xl flex items-center gap-2">
                   <Truck className="h-5 w-5" />
                   Shipping Information
                 </CardTitle>
@@ -182,7 +213,7 @@ export default function CheckoutPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="state">State</Label>
+                    <Label htmlFor="state">State/Province/Emirate</Label>
                     <Select
                       value={shippingInfo.state}
                       onValueChange={(value) =>
@@ -193,64 +224,15 @@ export default function CheckoutPage() {
                         <SelectValue placeholder="Select state" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="CA">California</SelectItem>
-                        <SelectItem value="NY">New York</SelectItem>
-                        <SelectItem value="TX">Texas</SelectItem>
-                        <SelectItem value="FL">Florida</SelectItem>
-                        <SelectItem value="MA">Massachusetts</SelectItem>
-                        <SelectItem value="IL">Illinois</SelectItem>
-                        <SelectItem value="WA">Washington</SelectItem>
-                        <SelectItem value="PA">Pennsylvania</SelectItem>
-                        <SelectItem value="OH">Ohio</SelectItem>
-                        <SelectItem value="MI">Michigan</SelectItem>
-                        <SelectItem value="NJ">New Jersey</SelectItem>
-                        <SelectItem value="GA">Georgia</SelectItem>
-                        <SelectItem value="NC">North Carolina</SelectItem>
-                        <SelectItem value="VA">Virginia</SelectItem>
-                        <SelectItem value="AZ">Arizona</SelectItem>
-                        <SelectItem value="CO">Colorado</SelectItem>
-                        <SelectItem value="MD">Maryland</SelectItem>
-                        <SelectItem value="MN">Minnesota</SelectItem>
-                        <SelectItem value="WI">Wisconsin</SelectItem>
-                        <SelectItem value="MO">Missouri</SelectItem>
-                        <SelectItem value="IN">Indiana</SelectItem>
-                        <SelectItem value="TN">Tennessee</SelectItem>
-                        <SelectItem value="SC">South Carolina</SelectItem>
-                        <SelectItem value="AL">Alabama</SelectItem>
-                        <SelectItem value="KY">Kentucky</SelectItem>
-                        <SelectItem value="LA">Louisiana</SelectItem>
-                        <SelectItem value="OR">Oregon</SelectItem>
-                        <SelectItem value="OK">Oklahoma</SelectItem>
-                        <SelectItem value="CT">Connecticut</SelectItem>
-                        <SelectItem value="IA">Iowa</SelectItem>
-                        <SelectItem value="KS">Kansas</SelectItem>
-                        <SelectItem value="UT">Utah</SelectItem>
-                        <SelectItem value="NV">Nevada</SelectItem>
-                        <SelectItem value="AR">Arkansas</SelectItem>
-                        <SelectItem value="MS">Mississippi</SelectItem>
-                        <SelectItem value="WV">West Virginia</SelectItem>
-                        <SelectItem value="NE">Nebraska</SelectItem>
-                        <SelectItem value="ID">Idaho</SelectItem>
-                        <SelectItem value="NH">New Hampshire</SelectItem>
-                        <SelectItem value="ME">Maine</SelectItem>
-                        <SelectItem value="RI">Rhode Island</SelectItem>
-                        <SelectItem value="DE">Delaware</SelectItem>
-                        <SelectItem value="VT">Vermont</SelectItem>
-                        <SelectItem value="SD">South Dakota</SelectItem>
-                        <SelectItem value="ND">North Dakota</SelectItem>
-                        <SelectItem value="WY">Wyoming</SelectItem>
-                        <SelectItem value="MT">Montana</SelectItem>
-                        <SelectItem value="AK">Alaska</SelectItem>
-                        <SelectItem value="HI">Hawaii</SelectItem>
-                        <SelectItem value="AB">Alberta</SelectItem>
-                        <SelectItem value="BC">British Columbia</SelectItem>
-                        <SelectItem value="MB">Manitoba</SelectItem>
-                        <SelectItem value="NB">New Brunswick</SelectItem>
-                        <SelectItem value="NS">Nova Scotia</SelectItem>
-                        <SelectItem value="ON">Ontario</SelectItem>
-                        <SelectItem value="PE">Prince Edward Island</SelectItem>
-                        <SelectItem value="QC">Quebec</SelectItem>
-                        <SelectItem value="SK">Saskatchewan</SelectItem>
+                        {countryStates[shippingInfo.country]?.map((state) => (
+                          <SelectItem key={state} value={state}>
+                            {state}
+                          </SelectItem>
+                        )) || (
+                          <SelectItem value="" disabled>
+                            No States Available
+                          </SelectItem>
+                        )}
                       </SelectContent>
                     </Select>
                   </div>
@@ -275,17 +257,14 @@ export default function CheckoutPage() {
                     <Label htmlFor="country">Country</Label>
                     <Select
                       value={shippingInfo.country}
-                      onValueChange={(value) =>
-                        setShippingInfo({ ...shippingInfo, country: value })
-                      }
+                      onValueChange={handleCountryChange}
                     >
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="US">United States</SelectItem>
-                        <SelectItem value="CA">Canada</SelectItem>
-                        <SelectItem value="UK">United Kingdom</SelectItem>
+                        <SelectItem value="PK">Pakistan</SelectItem>
+                        <SelectItem value="AE">United Arab Emirates</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -460,7 +439,7 @@ export default function CheckoutPage() {
 
                 <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                   <Shield className="h-4 w-4" />
-                  <span>Secure SSL encrypted checkout</span>
+                  <span>Secure SSL Encrypted Checkout</span>
                 </div>
               </CardContent>
             </Card>

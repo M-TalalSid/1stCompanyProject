@@ -1,18 +1,24 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Eye, EyeOff, Mail, Lock, User } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
-import { useAuth } from "@/app/context/AuthContext"
+import type React from "react";
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/app/context/AuthContext";
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -21,32 +27,32 @@ export default function RegisterPage() {
     email: "",
     password: "",
     confirmPassword: "",
-  })
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [agreeToTerms, setAgreeToTerms] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const { register } = useAuth()
-  const router = useRouter()
-  const { toast } = useToast()
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { register } = useAuth();
+  const router = useRouter();
+  const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const isPasswordValid = (password: string) => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
-    return regex.test(password)
-  }
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return regex.test(password);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    console.log("Form submitted hogya")
+    e.preventDefault();
+    setIsLoading(true);
+    console.log("Form submitted hogya");
 
     if (
       !formData.firstName ||
@@ -59,9 +65,9 @@ export default function RegisterPage() {
         title: "Please fill in all fields",
         description: "All fields are required to create an account.",
         variant: "destructive",
-      })
-      setIsLoading(false)
-      return
+      });
+      setIsLoading(false);
+      return;
     }
 
     if (formData.password !== formData.confirmPassword) {
@@ -69,68 +75,79 @@ export default function RegisterPage() {
         title: "Passwords don't match",
         description: "Please make sure your passwords match.",
         variant: "destructive",
-      })
-      setIsLoading(false)
-      return
+      });
+      setIsLoading(false);
+      return;
     }
 
     if (!isPasswordValid(formData.password)) {
       toast({
         title: "Weak password",
-        description: "Password must be at least 8 characters and include uppercase, lowercase, and a digit.",
+        description:
+          "Password must be at least 8 characters and include uppercase, lowercase, and a digit.",
         variant: "destructive",
-      })
-      setIsLoading(false)
-      return
+      });
+      setIsLoading(false);
+      return;
     }
 
     if (!agreeToTerms) {
       toast({
         title: "Please agree to terms",
-        description: "You must agree to the terms and conditions to create an account.",
+        description:
+          "You must agree to the terms and conditions to create an account.",
         variant: "destructive",
-      })
-      setIsLoading(false)
-      return
+      });
+      setIsLoading(false);
+      return;
     }
 
     try {
-      const fullName = `${formData.firstName} ${formData.lastName}`
-      const success = await register(formData.email, formData.password, fullName)
+      const fullName = `${formData.firstName} ${formData.lastName}`;
+      const success = await register(
+        formData.email,
+        formData.password,
+        fullName
+      );
 
       if (success) {
         toast({
           title: "Account created successfully!",
-          description: "Welcome to Luxe Fashion. You are now logged in.",
-        })
+          description:
+            "Welcome to All About Jeans Fashion. You are now logged in.",
+        });
         setTimeout(() => {
-        router.push('/auth-pages/login')
-      }, 500)
-
+          router.push("/auth-pages/login");
+        }, 500);
       } else {
         toast({
           title: "Registration failed",
-          description: "An error occurred while creating your account. Please try again.",
+          description:
+            "An error occurred while creating your account. Please try again.",
           variant: "destructive",
-        })
+        });
       }
     } catch (error) {
       toast({
         title: "Registration failed",
         description: "An error occurred. Please try again.",
         variant: "destructive",
-      })
+      });
     }
 
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-50 to-white flex items-center justify-center py-12 px-4">
       <Card className="w-full max-w-md shadow-xl border-0">
         <CardHeader className="text-center space-y-4">
-          <CardTitle className="text-3xl font-playfair font-light">Create Account</CardTitle>
-          <CardDescription className="text-lg">Join Luxe Fashion and Start Shopping</CardDescription>
+          <CardTitle className="text-3xl font-playfair font-light">
+            Create Account
+          </CardTitle>
+          <CardDescription className="text-lg">
+            Join All About Jeans Fashion and Start Shopping
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -257,15 +274,21 @@ export default function RegisterPage() {
               <Checkbox
                 id="terms"
                 checked={agreeToTerms}
-                onCheckedChange={checked => setAgreeToTerms(checked === true)}
+                onCheckedChange={(checked) => setAgreeToTerms(checked === true)}
               />
               <Label htmlFor="terms" className="text-sm text-gray-600">
                 I agree to the{" "}
-                <Link href="/terms" className="text-rose-600 hover:text-rose-700 hover:underline">
+                <Link
+                  href="/terms"
+                  className="text-rose-600 hover:text-rose-700 hover:underline"
+                >
                   Terms of Service
                 </Link>{" "}
                 and{" "}
-                <Link href="/privacy" className="text-rose-600 hover:text-rose-700 hover:underline">
+                <Link
+                  href="/privacy"
+                  className="text-rose-600 hover:text-rose-700 hover:underline"
+                >
                   Privacy Policy
                 </Link>
               </Label>
@@ -285,12 +308,17 @@ export default function RegisterPage() {
               <Separator />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-gray-500">Or sign up with</span>
+              <span className="bg-white px-2 text-gray-500">
+                Or sign up with
+              </span>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <Button variant="outline" className="py-3 rounded-xl border-2 bg-transparent">
+            <Button
+              variant="outline"
+              className="py-3 rounded-xl border-2 bg-transparent"
+            >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
@@ -311,8 +339,15 @@ export default function RegisterPage() {
               </svg>
               Google
             </Button>
-            <Button variant="outline" className="py-3 rounded-xl border-2 bg-transparent">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <Button
+              variant="outline"
+              className="py-3 rounded-xl border-2 bg-transparent"
+            >
+              <svg
+                className="w-5 h-5 mr-2"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
               </svg>
               Facebook
@@ -320,13 +355,18 @@ export default function RegisterPage() {
           </div>
 
           <div className="text-center">
-            <span className="text-sm text-gray-600">Already have an account? </span>
-            <Link href="/auth-pages/login" className="text-sm text-rose-600 hover:text-rose-700 font-medium hover:underline">
+            <span className="text-sm text-gray-600">
+              Already have an account?{" "}
+            </span>
+            <Link
+              href="/auth-pages/login"
+              className="text-sm text-rose-600 hover:text-rose-700 font-medium hover:underline"
+            >
               Sign in
             </Link>
           </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

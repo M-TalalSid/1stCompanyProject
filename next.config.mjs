@@ -7,8 +7,8 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['placeholder.svg'],
-    formats: ['image/webp', 'image/avif'],
+    domains: ["placeholder.svg"],
+    formats: ["image/webp", "image/avif"],
     unoptimized: true,
   },
   experimental: {
@@ -17,6 +17,6 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
-}
+};
 
-export default nextConfig
+export default nextConfig;
