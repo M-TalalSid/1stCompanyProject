@@ -59,20 +59,20 @@ export default function HomePage() {
       <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-rose-50 via-white to-purple-50 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-10"></div>
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-          <Badge className="mb-6 bg-rose-100 text-rose-800 hover:bg-rose-200">
+          <Badge className="mb-6 bg-rose-100 text-rose-800 hover:bg-rose-200 text-2xl">
             New Collection Available
           </Badge>
           <h1 className="text-6xl md:text-8xl font-playfair font-bold mb-6 bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">
             All About Jeans
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="md:text-3xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
             Discover our curated collection of premium fashion pieces that blend
             contemporary style with classic sophistication
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-rose-600 hover:bg-rose-700 text-lg px-8 py-6"
+              className="bg-rose-600 hover:bg-rose-700 text-2xl px-8 py-6"
               asChild
             >
               <Link href="/products">
@@ -83,7 +83,7 @@ export default function HomePage() {
             <Button
               variant="outline"
               size="lg"
-              className="text-lg px-8 py-6 bg-transparent"
+              className="text-2xl px-8 py-6 bg-transparent"
               asChild
             >
               <Link href="/about">Learn Our Story</Link>
@@ -104,7 +104,7 @@ export default function HomePage() {
             <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4 text-gray-900">
               Featured Pieces
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-2xl text-gray-600 max-w-2xl mx-auto">
               Handpicked selections that embody our commitment to quality and
               style
             </p>
@@ -154,11 +154,11 @@ export default function HomePage() {
                   </div>
                   <div className="p-6">
                     <Link href={`/products/${product.id}`}>
-                      <h3 className="font-semibold text-lg text-gray-900 mb-2 group-hover:text-rose-600 transition-colors">
+                      <h3 className="font-semibold text-xl text-gray-900 mb-2 group-hover:text-rose-600 transition-colors">
                         {product.name}
                       </h3>
                     </Link>
-                    <p className="text-gray-600 mb-3 capitalize text-sm">
+                    <p className="text-gray-600 mb-3 capitalize text-lg">
                       {product.category} • {product.subcategory}
                     </p>
                     <div className="flex items-center justify-between mb-3">
@@ -174,13 +174,13 @@ export default function HomePage() {
                       </div>
                       <div className="flex items-center gap-1">
                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                        <span className="text-sm text-gray-600">
+                        <span className="text-lg text-gray-600">
                           {product.rating}
                         </span>
                       </div>
                     </div>
                     <Button
-                      className="w-full bg-rose-600 hover:bg-rose-700"
+                      className="w-full bg-rose-600 hover:bg-rose-700 text-lg"
                       asChild
                     >
                       <Link href={`/products/${product.id}`}>View Details</Link>

@@ -169,10 +169,10 @@ export default function AdminPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-playfair font-light mb-2">
+        <h1 className="text-5xl font-playfair font-light mb-2">
           Admin Dashboard
         </h1>
-        <p className="text-gray-600 text-lg">
+        <p className="text-gray-600 text-2xl">
           Manage your Inventory and Orders
         </p>
       </div>
@@ -187,7 +187,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold">250</p>
-                <p className="text-sm text-gray-600">Total Products</p>
+                <p className="text-lg text-gray-600">Total Products</p>
               </div>
             </div>
           </CardContent>
@@ -201,7 +201,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold">500+</p>
-                <p className="text-sm text-gray-600">Total Orders</p>
+                <p className="text-lg text-gray-600">Total Orders</p>
               </div>
             </div>
           </CardContent>
@@ -215,7 +215,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold">5K+</p>
-                <p className="text-sm text-gray-600">Total Customers</p>
+                <p className="text-lg text-gray-600">Total Customers</p>
               </div>
             </div>
           </CardContent>
@@ -229,7 +229,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold">$89,234</p>
-                <p className="text-sm text-gray-600">Monthly Revenue</p>
+                <p className="text-lg text-gray-600">Monthly Revenue</p>
               </div>
             </div>
           </CardContent>
@@ -238,13 +238,13 @@ export default function AdminPage() {
 
       <Tabs defaultValue="products" className="space-y-6">
         <TabsList className="grid w-full grid-cols-3 bg-gray-100 p-1 rounded-xl">
-          <TabsTrigger value="products" className="rounded-lg">
+          <TabsTrigger value="products" className="rounded-lg text-xl">
             Products
           </TabsTrigger>
-          <TabsTrigger value="orders" className="rounded-lg">
+          <TabsTrigger value="orders" className="rounded-lg text-xl">
             Orders
           </TabsTrigger>
-          <TabsTrigger value="add-product" className="rounded-lg">
+          <TabsTrigger value="add-product" className="rounded-lg text-xl">
             Add Product
           </TabsTrigger>
         </TabsList>
@@ -252,8 +252,8 @@ export default function AdminPage() {
         <TabsContent value="products" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Product Inventory</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-3xl">Product Inventory</CardTitle>
+              <CardDescription className="text-xl">
                 Manage your product catalog and inventory levels
               </CardDescription>
             </CardHeader>
@@ -261,26 +261,26 @@ export default function AdminPage() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Product</TableHead>
-                    <TableHead>Category</TableHead>
-                    <TableHead>Price</TableHead>
-                    <TableHead>Stock</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Sales</TableHead>
-                    <TableHead>Actions</TableHead>
+                    <TableHead className="text-xl">Product</TableHead>
+                    <TableHead className="text-xl">Category</TableHead>
+                    <TableHead className="text-xl">Price</TableHead>
+                    <TableHead className="text-xl">Stock</TableHead>
+                    <TableHead className="text-xl">Status</TableHead>
+                    <TableHead className="text-xl">Sales</TableHead>
+                    <TableHead className="text-xl">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {mockProducts.map((product) => (
                     <TableRow key={product.id}>
-                      <TableCell className="font-medium">
+                      <TableCell className="font-medium text-xl">
                         {product.name}
                       </TableCell>
-                      <TableCell className="capitalize">
+                      <TableCell className="capitalize text-xl">
                         {product.category} / {product.subcategory}
                       </TableCell>
-                      <TableCell>${product.price}</TableCell>
-                      <TableCell>{product.stock}</TableCell>
+                      <TableCell className="text-xl">${product.price}</TableCell>
+                      <TableCell className="text-xl">{product.stock}</TableCell>
                       <TableCell>
                         <Badge
                           variant={
@@ -294,13 +294,13 @@ export default function AdminPage() {
                             : "Out of Stock"}
                         </Badge>
                       </TableCell>
-                      <TableCell>{product.sales}</TableCell>
+                      <TableCell className="text-xl">{product.sales}</TableCell>
                       <TableCell>
                         <div className="flex gap-2">
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="lg">
                             <Edit className="h-4 w-4" />
                           </Button>
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="lg">
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </div>
@@ -316,28 +316,28 @@ export default function AdminPage() {
         <TabsContent value="orders" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Order Management</CardTitle>
-              <CardDescription>View and manage customer orders</CardDescription>
+              <CardTitle className="text-3xl">Order Management</CardTitle>
+              <CardDescription className="text-xl">View and manage customer orders</CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Order ID</TableHead>
-                    <TableHead>Customer</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Items</TableHead>
-                    <TableHead>Total</TableHead>
-                    <TableHead>Actions</TableHead>
+                    <TableHead className="text-xl">Order ID</TableHead>
+                    <TableHead className="text-xl">Customer</TableHead>
+                    <TableHead className="text-xl">Date</TableHead>
+                    <TableHead className="text-xl">Status</TableHead>
+                    <TableHead className="text-xl">Items</TableHead>
+                    <TableHead className="text-xl">Total</TableHead>
+                    <TableHead className="text-xl">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {mockOrders.map((order) => (
                     <TableRow key={order.id}>
-                      <TableCell className="font-medium">{order.id}</TableCell>
-                      <TableCell>{order.customer}</TableCell>
-                      <TableCell>{order.date}</TableCell>
+                      <TableCell className="text-xl">{order.id}</TableCell>
+                      <TableCell className="text-xl">{order.customer}</TableCell>
+                      <TableCell className="text-xl">{order.date}</TableCell>
                       <TableCell>
                         <Select
                           defaultValue={order.status}
@@ -349,19 +349,19 @@ export default function AdminPage() {
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="processing">
+                            <SelectItem value="processing" className="text-xl">
                               Processing
                             </SelectItem>
-                            <SelectItem value="shipped">Shipped</SelectItem>
-                            <SelectItem value="delivered">Delivered</SelectItem>
-                            <SelectItem value="cancelled">Cancelled</SelectItem>
+                            <SelectItem value="shipped" className="text-xl">Shipped</SelectItem>
+                            <SelectItem value="delivered" className="text-xl">Delivered</SelectItem>
+                            <SelectItem value="cancelled" className="text-xl">Cancelled</SelectItem>
                           </SelectContent>
                         </Select>
                       </TableCell>
-                      <TableCell>{order.items}</TableCell>
-                      <TableCell>${order.total}</TableCell>
+                      <TableCell className="text-xl">{order.items}</TableCell>
+                      <TableCell className="text-xl">${order.total}</TableCell>
                       <TableCell>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="lg" className="text-xl">
                           View Details
                         </Button>
                       </TableCell>
@@ -376,15 +376,15 @@ export default function AdminPage() {
         <TabsContent value="add-product" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Add New Product</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-3xl">Add New Product</CardTitle>
+              <CardDescription className="text-xl">
                 Add a new product to your inventory
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="productName">Product Name *</Label>
+                  <Label htmlFor="productName" className="text-xl">Product Name *</Label>
                   <Input
                     id="productName"
                     value={newProduct.name}
@@ -396,7 +396,7 @@ export default function AdminPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="price">Price *</Label>
+                  <Label htmlFor="price" className="text-xl">Price *</Label>
                   <Input
                     id="price"
                     type="number"
@@ -410,7 +410,7 @@ export default function AdminPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="category">Category *</Label>
+                  <Label htmlFor="category" className="text-xl">Category *</Label>
                   <Select
                     value={newProduct.category}
                     onValueChange={(value) =>
@@ -421,16 +421,16 @@ export default function AdminPage() {
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="women">Women</SelectItem>
-                      <SelectItem value="men">Men</SelectItem>
-                      <SelectItem value="kids">Kids</SelectItem>
-                      <SelectItem value="accessories">Accessories</SelectItem>
+                      <SelectItem value="women" className="text-xl">Women</SelectItem>
+                      <SelectItem value="men" className="text-xl">Men</SelectItem>
+                      <SelectItem value="kids" className="text-xl">Kids</SelectItem>
+                      <SelectItem value="accessories" className="text-xl">Accessories</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div>
-                  <Label htmlFor="subcategory">Subcategory</Label>
+                  <Label htmlFor="subcategory" className="text-xl">Subcategory</Label>
                   <Input
                     id="subcategory"
                     value={newProduct.subcategory}
@@ -445,7 +445,7 @@ export default function AdminPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="stock">Stock Quantity</Label>
+                  <Label htmlFor="stock" className="text-xl">Stock Quantity</Label>
                   <Input
                     id="stock"
                     type="number"
@@ -458,7 +458,7 @@ export default function AdminPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="images">Image URLs</Label>
+                  <Label htmlFor="images" className="text-xl">Image URLs</Label>
                   <Input
                     id="images"
                     value={newProduct.images}
@@ -471,7 +471,7 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <Label htmlFor="description">Product Description</Label>
+                <Label htmlFor="description" className="text-xl">Product Description</Label>
                 <Textarea
                   id="description"
                   value={newProduct.description}
@@ -488,7 +488,7 @@ export default function AdminPage() {
 
               <Button
                 onClick={handleAddProduct}
-                className="bg-rose-600 hover:bg-rose-700"
+                className="bg-rose-600 hover:bg-rose-700 text-xl"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Product

@@ -221,20 +221,20 @@ export default function SalePage() {
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h2 className="text-3xl font-playfair font-light">Sale Items</h2>
-              <p className="text-gray-600 text-lg">
+              <h2 className="text-4xl font-playfair font-light">Sale Items</h2>
+              <p className="text-gray-600 text-xl">
                 {filteredProducts.length} products on sale
               </p>
             </div>
             <Select value={sortBy} onValueChange={handleSort}>
-              <SelectTrigger className="w-48">
+              <SelectTrigger className="w-48 text-xl">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="discount">Highest Discount</SelectItem>
-                <SelectItem value="price-low">Price: Low to High</SelectItem>
-                <SelectItem value="price-high">Price: High to Low</SelectItem>
-                <SelectItem value="rating">Highest Rated</SelectItem>
+                <SelectItem value="discount" className="text-xl">Highest Discount</SelectItem>
+                <SelectItem value="price-low" className="text-xl">Price: Low to High</SelectItem>
+                <SelectItem value="price-high" className="text-xl">Price: High to Low</SelectItem>
+                <SelectItem value="rating" className="text-xl">Highest Rated</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -272,7 +272,7 @@ export default function SalePage() {
                   </div>
                   <div className="p-4">
                     <Link href={`/products/${product.id}`}>
-                      <h3 className="font-semibold text-lg mb-2 group-hover:text-red-600 transition-colors">
+                      <h3 className="font-semibold text-2xl mb-2 group-hover:text-red-600 transition-colors">
                         {product.name}
                       </h3>
                     </Link>
@@ -288,7 +288,7 @@ export default function SalePage() {
                             }`}
                           />
                         ))}
-                        <span className="text-sm text-gray-600 ml-2">
+                        <span className="text-lg text-gray-600 ml-2">
                           {product.rating} ({product.reviews})
                         </span>
                       </div>
@@ -302,7 +302,7 @@ export default function SalePage() {
                       </span>
                     </div>
                     <div className="mt-2">
-                      <span className="text-sm font-medium text-green-600">
+                      <span className="text-lg font-medium text-green-600">
                         You save $
                         {(product.originalPrice - product.price).toFixed(2)}
                       </span>

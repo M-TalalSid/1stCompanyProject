@@ -23,8 +23,8 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative py-20 px-4">
         <div className="container mx-auto text-center">
-          <Badge className="mb-6 bg-rose-100 text-rose-800 hover:bg-rose-200">
-            Est. 2020
+          <Badge className="mb-6 bg-rose-100 text-rose-800 hover:bg-rose-200 text-xl">
+            Est. 2025
           </Badge>
           <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">
             About Us
@@ -148,20 +148,20 @@ export default function AboutPage() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold mb-2">3K+</div>
-              <div className="text-rose-100">Happy Customers</div>
+              <div className="text-5xl font-bold mb-2">3K+</div>
+              <div className="text-rose-100 text-xl">Happy Customers</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">25+</div>
-              <div className="text-rose-100">Premium Products</div>
+              <div className="text-5xl font-bold mb-2">25+</div>
+              <div className="text-rose-100 text-xl">Premium Products</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">5+</div>
-              <div className="text-rose-100">Countries Served</div>
+              <div className="text-5xl font-bold mb-2">5+</div>
+              <div className="text-rose-100 text-xl">Countries Served</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">4.8★</div>
-              <div className="text-rose-100">Average Rating</div>
+              <div className="text-5xl font-bold mb-2">4.8★</div>
+              <div className="text-rose-100 text-xl">Average Rating</div>
             </div>
           </div>
         </div>
@@ -182,16 +182,16 @@ export default function AboutPage() {
               greater than yourself.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Badge variant="secondary" className="px-4 py-2 text-lg">
+              <Badge variant="secondary" className="px-4 py-2 text-xl">
                 Ethical Production
               </Badge>
-              <Badge variant="secondary" className="px-4 py-2 text-lg">
+              <Badge variant="secondary" className="px-4 py-2 text-xl">
                 Fair Trade
               </Badge>
-              <Badge variant="secondary" className="px-4 py-2 text-lg">
+              <Badge variant="secondary" className="px-4 py-2 text-xl">
                 Carbon Neutral Shipping
               </Badge>
-              <Badge variant="secondary" className="px-4 py-2 text-lg">
+              <Badge variant="secondary" className="px-4 py-2 text-xl">
                 Sustainable Materials
               </Badge>
             </div>
@@ -215,11 +215,11 @@ export default function AboutPage() {
               <Button
                 asChild
                 size="xl"
-                className="bg-rose-600 hover:bg-rose-700 text-xl"
+                className="bg-rose-600 hover:bg-rose-700 text-2xl"
               >
                 <Link href="./">Our Collection</Link>
               </Button>
-              <Button asChild variant="outline" size="xl" className="text-xl">
+              <Button asChild variant="outline" size="xl" className="text-2xl">
                 <Link href="/contact">Get In Touch</Link>
               </Button>
             </div>

@@ -350,9 +350,9 @@ export default function Header() {
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
                 name="search"
-                type="search"
-                placeholder="Search for products..."
-                className="pl-12 pr-4 py-3 rounded-full border-gray-300 focus:border-rose-500 focus:ring-rose-500"
+                type="text"
+                placeholder="Search For Products..."
+                className="pl-12 pr-4 py-3 rounded-full border-gray-600 focus:border-rose-500 focus:ring-rose-500 placeholder:text-lg"
               />
             </form>
           </div>
@@ -806,7 +806,7 @@ export default function Header() {
               <Input
                 name="search"
                 type="search"
-                placeholder="Search for products..."
+                placeholder="Search For Products..."
                 className="pl-12 pr-4 py-3 rounded-full"
               />
             </form>
