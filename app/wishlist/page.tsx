@@ -23,6 +23,7 @@ export default function WishlistPage() {
       size: "M", // Default size
       color: "Default", // Default color
       quantity: 1,
+      stock: 0
     });
 
     toast({

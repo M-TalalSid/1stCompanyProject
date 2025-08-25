@@ -48,6 +48,7 @@ export default function HomePage() {
         price: product.price,
         image: product.images[0],
         category: product.category,
+        stock: 0
       });
     }
   };
@@ -118,7 +119,7 @@ export default function HomePage() {
               >
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden">
-                    <Link href={`/products/${product.id}`}>
+                    <Link href={`/products/${product.name}`}>
                       <div className="aspect-square bg-gray-100 overflow-hidden">
                         <img
                           src={product.images[0] || "/placeholder.svg"}
@@ -153,7 +154,7 @@ export default function HomePage() {
                     )}
                   </div>
                   <div className="p-6">
-                    <Link href={`/products/${product.id}`}>
+                    <Link href={`/products/${product.name}`}>
                       <h3 className="font-semibold text-xl text-gray-900 mb-2 group-hover:text-rose-600 transition-colors">
                         {product.name}
                       </h3>
@@ -183,7 +184,7 @@ export default function HomePage() {
                       className="w-full bg-rose-600 hover:bg-rose-700 text-lg"
                       asChild
                     >
-                      <Link href={`/products/${product.id}`}>View Details</Link>
+                      <Link href={`/products/${product.name}`}>View Details</Link>
                     </Button>
                   </div>
                 </CardContent>

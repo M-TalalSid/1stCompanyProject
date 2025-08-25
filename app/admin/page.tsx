@@ -327,7 +327,7 @@ export default function AdminPage() {
         >
           <div>
             <h1 className="text-5xl font-bold mb-3">Admin Dashboard</h1>
-            <p className="text-lg">Orchestrate your empire with elegance.</p>
+            <p className="text-xl font-semibold">Orchestrate your empire with elegance.</p>
           </div>
           <Switch
             checked={darkMode}
@@ -340,19 +340,19 @@ export default function AdminPage() {
           {[
             {
               icon: Package,
-              value: "250",
+              value: "80+",
               label: "Total Products",
               color: "rose",
             },
             {
               icon: ShoppingCart,
-              value: "500+",
+              value: "300+",
               label: "Total Orders",
               color: "blue",
             },
             {
               icon: Users,
-              value: "5K+",
+              value: "2K+",
               label: "Total Customers",
               color: "emerald",
             },
@@ -398,14 +398,14 @@ export default function AdminPage() {
           className={`${darkMode ? "bg-gray-800/90" : "bg-white/90"} backdrop-blur-lg border-none shadow-2xl rounded-3xl mb-12 transition-all duration-300 hover:shadow-rose-400/30`}
         >
           <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-3xl font-bold">
+            <CardTitle className="flex items-center gap-3 text-4xl font-bold">
               <BarChart2 className="h-7 w-7 text-rose-600" />
               Analytics Overview
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-80 flex items-center justify-center bg-gradient-to-br from-rose-100 to-purple-100 rounded-2xl shadow-inner">
-              <p className="text-lg font-semibold text-gray-600">
+              <p className="text-xl font-semibold text-gray-600">
                 Advanced Analytics Dashboard Placeholder (Integrate with
                 Chart.js or Recharts)
               </p>
@@ -418,7 +418,7 @@ export default function AdminPage() {
           onValueChange={setActiveTab}
           className="space-y-8"
         >
-          <TabsList className="grid w-full grid-cols-4 bg-gradient-to-r from-rose-500 to-purple-600 p-1.5 rounded-2xl shadow-lg overflow-hidden">
+          <TabsList className="grid w-full grid-cols-4 bg-gradient-to-r from-rose-500 to-purple-600 rounded-xl p-1.5 shadow-lg overflow-hidden">
             {[
               { value: "products", label: "Products" },
               { value: "orders", label: "Orders" },
@@ -428,7 +428,7 @@ export default function AdminPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="rounded-xl text-lg font-semibold text-white py-3 data-[state=active]:bg-white data-[state=active]:text-rose-600 data-[state=active]:shadow-2xl transition-all duration-300 hover:bg-rose-100/30 hover:scale-105"
+                className="rounded-lg text-xl font-semibold text-white py-0.3 data-[state=active]:bg-white data-[state=active]:text-rose-600 data-[state=active]:shadow-2xl transition-all duration-300 hover:bg-rose-100/30 hover:scale-105"
               >
                 {tab.label}
               </TabsTrigger>

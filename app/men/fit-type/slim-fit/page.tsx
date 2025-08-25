@@ -128,6 +128,7 @@ export default function MenPantsPage() {
         originalPrice: product.originalPrice,
         image: product.image,
         category: product.category,
+        stock: 0
       })
       toast({
         title: "Added to wishlist!",

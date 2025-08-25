@@ -4,6 +4,7 @@ import type React from "react";
 import { createContext, useContext, useReducer, type ReactNode } from "react";
 
 interface WishlistItem {
+  stock: number;
   id: number;
   name: string;
   price: number;

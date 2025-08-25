@@ -10,6 +10,7 @@ import {
 } from "react";
 
 interface CartItem {
+  stock: number;
   id: number;
   name: string;
   price: number;

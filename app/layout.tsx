@@ -1,11 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
-import {
-  Playfair_Display,
-  Inter,
-  Noto_Sans_JP,
-  Dancing_Script,
-} from "next/font/google";
+import { Noto_Sans_JP, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -21,6 +16,7 @@ const dancingScript = Dancing_Script({
   variable: "--font-dancing-script",
   display: "swap",
 });
+
 // Load the Google Font
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -62,10 +58,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // <html lang="en" className={`${notoSansJP.variable}`}>
     <html lang="en" className={`${dancingScript.variable}`}>
-      <body className="font-dancing-script">
-        {/* <body className="font-noto-sans-jp"> */}
+      <body>
         <AuthProvider>
           <WishlistProvider>
             <CartProvider>

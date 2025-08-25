@@ -64,6 +64,7 @@ export default function ProductDetailClient({
       size: selectedSize,
       color: selectedColor.name,
       quantity,
+      stock: 0
     });
 
     toast({
@@ -86,6 +87,7 @@ export default function ProductDetailClient({
         price: product.price,
         image: product.images[0],
         category: product.category,
+        stock: 0
       });
       toast({
         title: "Added to wishlist",

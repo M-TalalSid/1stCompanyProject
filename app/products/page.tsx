@@ -65,6 +65,7 @@ export default function ProductsPage() {
         price: product.price,
         image: product.images[0],
         category: product.category,
+        stock: 0
       });
     }
   };

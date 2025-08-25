@@ -213,8 +213,8 @@ export default function AccountPage() {
               />
             </div>
             <div>
-              <h1 className="text-4xl font-bold">Welcome back, {user.name}!</h1>
-              <p className="text-lg mt-2">
+              <h1 className="text-5xl font-bold">Welcome back, {user.name}!</h1>
+              <p className="text-xl mt-2">
                 Curate your style with sophistication.
               </p>
             </div>
@@ -231,7 +231,7 @@ export default function AccountPage() {
           onValueChange={setActiveTab}
           className="space-y-8"
         >
-          <TabsList className="grid w-full grid-cols-4 bg-gradient-to-r from-rose-500 to-purple-600 p-1.5 rounded-2xl shadow-lg overflow-hidden">
+          <TabsList className="grid w-full grid-cols-4 bg-gradient-to-r from-rose-500 to-purple-600 p-1.5 rounded-xl shadow-lg overflow-hidden">
             {[
               { value: "profile", icon: User, label: "Profile" },
               { value: "orders", icon: Package, label: "Orders" },
@@ -241,7 +241,7 @@ export default function AccountPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-3 text-lg font-semibold text-white py-3 rounded-xl data-[state=active]:bg-white data-[state=active]:text-rose-600 data-[state=active]:shadow-2xl transition-all duration-300 hover:bg-rose-100/30 hover:scale-105"
+                className="flex items-center gap-3 text-xl font-semibold text-white py-0.3 rounded-lg data-[state=active]:bg-white data-[state=active]:text-rose-600 data-[state=active]:shadow-2xl transition-all duration-300 hover:bg-rose-100/30 hover:scale-105"
               >
                 <tab.icon className="h-5 w-5" />
                 {tab.label}
@@ -263,11 +263,11 @@ export default function AccountPage() {
                     className={`${darkMode ? "bg-gray-800/90" : "bg-white/90"} backdrop-blur-lg border-none shadow-2xl rounded-3xl transition-all duration-300 hover:shadow-rose-400/30`}
                   >
                     <CardHeader>
-                      <CardTitle className="text-3xl font-bold">
+                      <CardTitle className="text-4xl font-bold">
                         Personal Information
                       </CardTitle>
                       <CardDescription
-                        className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                        className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                       >
                         Refine your personal details
                       </CardDescription>
@@ -297,7 +297,7 @@ export default function AccountPage() {
                         <div>
                           <Label
                             htmlFor="profilePic"
-                            className="text-lg font-semibold cursor-pointer"
+                            className="text-xl font-semibold cursor-pointer"
                           >
                             Update Profile Picture
                           </Label>
@@ -307,34 +307,34 @@ export default function AccountPage() {
                         <div>
                           <Label
                             htmlFor="firstName"
-                            className="text-lg font-semibold"
+                            className="text-xl font-semibold"
                           >
                             First Name
                           </Label>
                           <Input
                             id="firstName"
                             defaultValue="John"
-                            className={`mt-2 rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                            className={`mt-2 rounded-xl font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                           />
                         </div>
                         <div>
                           <Label
                             htmlFor="lastName"
-                            className="text-lg font-semibold"
+                            className="text-xl font-semibold"
                           >
                             Last Name
                           </Label>
                           <Input
                             id="lastName"
                             defaultValue="Doe"
-                            className={`mt-2 rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                            className={`mt-2 rounded-xl font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                           />
                         </div>
                       </div>
                       <div>
                         <Label
                           htmlFor="email"
-                          className="text-lg font-semibold"
+                          className="text-xl font-semibold"
                         >
                           Email
                         </Label>
@@ -342,13 +342,13 @@ export default function AccountPage() {
                           id="email"
                           type="email"
                           defaultValue={user.email}
-                          className={`mt-2 rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                          className={`mt-2 rounded-xl font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                         />
                       </div>
                       <div>
                         <Label
                           htmlFor="phone"
-                          className="text-lg font-semibold"
+                          className="text-xl font-semibold"
                         >
                           Phone
                         </Label>
@@ -356,20 +356,20 @@ export default function AccountPage() {
                           id="phone"
                           type="tel"
                           placeholder="+1 (555) 123-4567"
-                          className={`mt-2 rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                          className={`mt-2 rounded-xl font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="bio" className="text-lg font-semibold">
+                        <Label htmlFor="bio" className="text-xl font-semibold">
                           Bio
                         </Label>
                         <Textarea
                           id="bio"
-                          placeholder="Tell us about yourself..."
-                          className={`mt-2 rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                          placeholder="Tell Us About Yourself..."
+                          className={`mt-2 rounded-xl font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                         />
                       </div>
-                      <Button className="bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white text-lg font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                      <Button className="bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white text-xl font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
                         Save Changes
                       </Button>
                     </CardContent>
@@ -379,12 +379,12 @@ export default function AccountPage() {
                     className={`${darkMode ? "bg-gray-800/90" : "bg-white/90"} backdrop-blur-lg border-none shadow-2xl rounded-3xl transition-all duration-300 hover:shadow-rose-400/30`}
                   >
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-3 text-3xl font-bold">
+                      <CardTitle className="flex items-center gap-3 text-4xl font-bold">
                         <MapPin className="h-7 w-7 text-rose-600" />
                         Address Book
                       </CardTitle>
                       <CardDescription
-                        className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                        className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                       >
                         Manage your shipping addresses
                       </CardDescription>
@@ -393,14 +393,14 @@ export default function AccountPage() {
                       {addresses.map((addr) => (
                         <div
                           key={addr.id}
-                          className={`p-4 rounded-xl ${darkMode ? "bg-gray-700/50" : "bg-gray-50/50"} flex justify-between items-center`}
+                          className={`p-4 rounded-xl font-semibold ${darkMode ? "bg-gray-700/50" : "bg-gray-50/50"} flex justify-between items-center`}
                         >
                           <div>
-                            <h4 className="text-lg font-semibold">
+                            <h4 className="text-xl font-semibold">
                               {addr.name}
                             </h4>
                             <p
-                              className={`text-sm ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                              className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                             >
                               {addr.address}
                             </p>
@@ -411,14 +411,14 @@ export default function AccountPage() {
                             ) : (
                               <Button
                                 variant="outline"
-                                size="sm"
+                                size="lg"
                                 onClick={() => handleSetDefaultAddress(addr.id)}
-                                className="rounded-xl"
+                                className="rounded-xl font-semibold"
                               >
                                 Set Default
                               </Button>
                             )}
-                            <Button variant="ghost" size="sm">
+                            <Button variant="ghost" size="lg">
                               <Trash2 className="h-4 w-4 text-red-500" />
                             </Button>
                           </div>
@@ -426,7 +426,7 @@ export default function AccountPage() {
                       ))}
                       <Separator />
                       <div className="space-y-4">
-                        <Label className="text-lg font-semibold">
+                        <Label className="text-xl font-semibold">
                           Add New Address
                         </Label>
                         <Input
@@ -438,7 +438,7 @@ export default function AccountPage() {
                               name: e.target.value,
                             })
                           }
-                          className={`rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                          className={`rounded-xl text-lg font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                         />
                         <Textarea
                           placeholder="Full Address"
@@ -449,11 +449,11 @@ export default function AccountPage() {
                               address: e.target.value,
                             })
                           }
-                          className={`rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                          className={`rounded-xl text-lg font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                         />
                         <Button
                           onClick={handleAddAddress}
-                          className="bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white text-lg font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg"
+                          className="bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white text-xl font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg"
                         >
                           <Plus className="h-5 w-5 mr-2" /> Add Address
                         </Button>
@@ -468,11 +468,11 @@ export default function AccountPage() {
                   className={`${darkMode ? "bg-gray-800/90" : "bg-white/90"} backdrop-blur-lg border-none shadow-2xl rounded-3xl transition-all duration-300 hover:shadow-rose-400/30`}
                 >
                   <CardHeader>
-                    <CardTitle className="text-3xl font-bold">
+                    <CardTitle className="text-4xl font-bold">
                       Order History
                     </CardTitle>
                     <CardDescription
-                      className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                      className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                     >
                       Track and review your purchases
                     </CardDescription>
@@ -484,7 +484,7 @@ export default function AccountPage() {
                         placeholder="Search orders..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className={`pl-10 rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                        className={`pl-10 rounded-xl font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                       />
                     </div>
                     <AnimatePresence>
@@ -502,7 +502,7 @@ export default function AccountPage() {
                                 Order {order.id}
                               </h3>
                               <p
-                                className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                                className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                               >
                                 Placed on {order.date}
                               </p>
@@ -516,13 +516,13 @@ export default function AccountPage() {
                                 }
                                 className={
                                   order.status === "Delivered"
-                                    ? "bg-rose-600 text-white"
-                                    : "bg-purple-600 text-white"
+                                    ? "bg-rose-600 text-white text-lg"
+                                    : "bg-purple-600 text-white text-lg"
                                 }
                               >
                                 {order.status}
                               </Badge>
-                              <p className="text-lg font-semibold mt-2">
+                              <p className="text-xl font-semibold mt-2">
                                 ${order.total.toFixed(2)}
                               </p>
                             </div>
@@ -532,7 +532,7 @@ export default function AccountPage() {
                             {order.items.map((item, index) => (
                               <div
                                 key={index}
-                                className="flex justify-between text-lg"
+                                className="flex justify-between text-xl"
                               >
                                 <span>
                                   {item.name} × {item.quantity}
@@ -546,7 +546,7 @@ export default function AccountPage() {
                           {order.status === "Delivered" && (
                             <div className="mt-6">
                               <Label className="text-lg font-semibold">
-                                Rate this order
+                                Rate This Order
                               </Label>
                               <div className="flex gap-1 mt-2">
                                 {[1, 2, 3, 4, 5].map((star) => (
@@ -582,13 +582,13 @@ export default function AccountPage() {
                                 <Button
                                   variant="outline"
                                   size="sm"
-                                  className="text-lg font-semibold rounded-xl border-rose-500 text-rose-600 hover:bg-rose-50/50 transition-colors"
+                                  className="text-xl font-semibold rounded-xl border-rose-500 text-rose-600 hover:bg-rose-50/50 transition-colors"
                                 >
                                   View Details
                                 </Button>
                               </TooltipTrigger>
                               <TooltipContent>
-                                View order details
+                                View Order Details
                               </TooltipContent>
                             </Tooltip>
                             <Tooltip>
@@ -596,12 +596,12 @@ export default function AccountPage() {
                                 <Button
                                   variant="outline"
                                   size="sm"
-                                  className="text-lg font-semibold rounded-xl border-rose-500 text-rose-600 hover:bg-rose-50/50 transition-colors"
+                                  className="text-xl font-semibold rounded-xl border-rose-500 text-rose-600 hover:bg-rose-50/50 transition-colors"
                                 >
                                   Track Order
                                 </Button>
                               </TooltipTrigger>
-                              <TooltipContent>Track your order</TooltipContent>
+                              <TooltipContent>Track Your Order</TooltipContent>
                             </Tooltip>
                             {order.status === "Delivered" && (
                               <Tooltip>
@@ -609,12 +609,12 @@ export default function AccountPage() {
                                   <Button
                                     variant="outline"
                                     size="sm"
-                                    className="text-lg font-semibold rounded-xl border-rose-500 text-rose-600 hover:bg-rose-50/50 transition-colors"
+                                    className="text-xl font-semibold rounded-xl border-rose-500 text-rose-600 hover:bg-rose-50/50 transition-colors"
                                   >
                                     Reorder
                                   </Button>
                                 </TooltipTrigger>
-                                <TooltipContent>Reorder items</TooltipContent>
+                                <TooltipContent>Reorder Items</TooltipContent>
                               </Tooltip>
                             )}
                           </div>
@@ -622,7 +622,7 @@ export default function AccountPage() {
                       ))}
                     </AnimatePresence>
                     {filteredOrders.length === 0 && (
-                      <p className="text-center text-lg">No orders found.</p>
+                      <p className="text-center text-lg">No Orders Found.</p>
                     )}
                   </CardContent>
                 </Card>
@@ -633,11 +633,11 @@ export default function AccountPage() {
                   className={`${darkMode ? "bg-gray-800/90" : "bg-white/90"} backdrop-blur-lg border-none shadow-2xl rounded-3xl transition-all duration-300 hover:shadow-rose-400/30`}
                 >
                   <CardHeader>
-                    <CardTitle className="text-3xl font-bold">
+                    <CardTitle className="text-4xl font-bold">
                       Your Wishlist
                     </CardTitle>
                     <CardDescription
-                      className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                      className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                     >
                       Curated items for your next purchase
                     </CardDescription>
@@ -659,12 +659,12 @@ export default function AccountPage() {
                                 <h4 className="text-xl font-semibold">
                                   {item.name}
                                 </h4>
-                                <p className="text-lg font-semibold">
+                                <p className="text-xl font-semibold">
                                   ${item.price.toFixed(2)}
                                 </p>
                               </div>
                               <div className="flex gap-2">
-                                <Button className="flex-1 rounded-xl bg-rose-600 hover:bg-rose-700 text-white">
+                                <Button className="flex-1 rounded-xl text-lg font-semibold bg-rose-600 hover:bg-rose-700 text-white">
                                   Add to Cart
                                 </Button>
                                 <Button
@@ -672,7 +672,7 @@ export default function AccountPage() {
                                   onClick={() => handleRemoveWishlist(item.id)}
                                   className="text-red-500"
                                 >
-                                  <Trash2 className="h-5 w-5" />
+                                  <Trash2 className="h-6 w-6" />
                                 </Button>
                               </div>
                             </motion.div>
@@ -682,15 +682,15 @@ export default function AccountPage() {
                     ) : (
                       <div className="text-center py-12">
                         <Heart className="h-16 w-16 mx-auto text-rose-300 mb-6 animate-pulse" />
-                        <h3 className="text-2xl font-semibold mb-3">
+                        <h3 className="text-3xl font-semibold mb-3">
                           Your Wishlist Is Empty
                         </h3>
                         <p
-                          className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"} mb-6`}
+                          className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"} mb-6`}
                         >
                           Discover and save items you love.
                         </p>
-                        <Button className="bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white text-lg font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                        <Button className="bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white text-xl font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
                           Explore Products
                         </Button>
                       </div>
@@ -705,11 +705,11 @@ export default function AccountPage() {
                     className={`${darkMode ? "bg-gray-800/90" : "bg-white/90"} backdrop-blur-lg border-none shadow-2xl rounded-3xl transition-all duration-300 hover:shadow-rose-400/30`}
                   >
                     <CardHeader>
-                      <CardTitle className="text-3xl font-bold">
+                      <CardTitle className="text-4xl font-bold">
                         Account Security
                       </CardTitle>
                       <CardDescription
-                        className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                        className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                       >
                         Enhance your account protection
                       </CardDescription>
@@ -718,7 +718,7 @@ export default function AccountPage() {
                       <div>
                         <Label
                           htmlFor="currentPassword"
-                          className="text-lg font-semibold"
+                          className="text-xl font-semibold"
                         >
                           Current Password
                         </Label>
@@ -731,7 +731,7 @@ export default function AccountPage() {
                       <div>
                         <Label
                           htmlFor="newPassword"
-                          className="text-lg font-semibold"
+                          className="text-xl font-semibold"
                         >
                           New Password
                         </Label>
@@ -744,7 +744,7 @@ export default function AccountPage() {
                       <div>
                         <Label
                           htmlFor="confirmPassword"
-                          className="text-lg font-semibold"
+                          className="text-xl font-semibold"
                         >
                           Confirm New Password
                         </Label>
@@ -757,7 +757,7 @@ export default function AccountPage() {
                       <div className="flex items-center justify-between">
                         <Label
                           htmlFor="twoFactor"
-                          className="text-lg font-semibold"
+                          className="text-xl font-semibold"
                         >
                           Enable Two-Factor Authentication
                         </Label>
@@ -769,7 +769,7 @@ export default function AccountPage() {
                       <div className="flex items-center justify-between">
                         <Label
                           htmlFor="emailVerify"
-                          className="text-lg font-semibold"
+                          className="text-xl font-semibold"
                         >
                           Email Verification
                         </Label>
@@ -779,7 +779,7 @@ export default function AccountPage() {
                           defaultChecked
                         />
                       </div>
-                      <Button className="bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white text-lg font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                      <Button className="bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white text-xl font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
                         Update Security
                       </Button>
                     </CardContent>
@@ -789,12 +789,12 @@ export default function AccountPage() {
                     className={`${darkMode ? "bg-gray-800/90" : "bg-white/90"} backdrop-blur-lg border-none shadow-2xl rounded-3xl transition-all duration-300 hover:shadow-rose-400/30`}
                   >
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-3 text-3xl font-bold">
+                      <CardTitle className="flex items-center gap-3 text-4xl font-bold">
                         <CreditCard className="h-7 w-7 text-rose-600" />
                         Payment Methods
                       </CardTitle>
                       <CardDescription
-                        className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                        className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                       >
                         Manage your payment options
                       </CardDescription>
@@ -803,16 +803,16 @@ export default function AccountPage() {
                       {payments.map((payment) => (
                         <div
                           key={payment.id}
-                          className={`p-4 rounded-xl ${darkMode ? "bg-gray-700/50" : "bg-gray-50/50"} flex justify-between items-center`}
+                          className={`p-4 rounded-xl font-semibold ${darkMode ? "bg-gray-700/50" : "bg-gray-50/50"} flex justify-between items-center`}
                         >
                           <div className="flex items-center gap-4">
                             <CreditCard className="h-6 w-6 text-rose-600" />
                             <div>
-                              <h4 className="text-lg font-semibold">
+                              <h4 className="text-xl font-semibold">
                                 {payment.type} **** {payment.last4}
                               </h4>
                               <p
-                                className={`text-sm ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                                className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                               >
                                 Expires {payment.expiry}
                               </p>
@@ -831,7 +831,7 @@ export default function AccountPage() {
                         <div className="text-center py-8">
                           <CreditCard className="h-12 w-12 mx-auto text-rose-300 mb-4" />
                           <p
-                            className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                            className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                           >
                             No payment methods added.
                           </p>
@@ -839,40 +839,40 @@ export default function AccountPage() {
                       )}
                       <Separator />
                       <div className="space-y-4">
-                        <Label className="text-lg font-semibold">
+                        <Label className="text-xl font-semibold">
                           Add New Payment Method
                         </Label>
                         <Select>
                           <SelectTrigger
-                            className={`rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                            className={`rounded-xl font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                           >
                             <SelectValue placeholder="Card Type" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="visa">Visa</SelectItem>
-                            <SelectItem value="mastercard">
+                            <SelectItem value="visa" className="text-lg">Visa</SelectItem>
+                            <SelectItem value="mastercard" className="text-lg">
                               MasterCard
                             </SelectItem>
-                            <SelectItem value="amex">
+                            <SelectItem value="amex" className="text-lg">
                               American Express
                             </SelectItem>
                           </SelectContent>
                         </Select>
                         <Input
                           placeholder="Card Number"
-                          className={`rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                          className={`rounded-xl font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                         />
                         <div className="grid grid-cols-2 gap-4">
                           <Input
                             placeholder="Expiry (MM/YY)"
-                            className={`rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                            className={`rounded-xl font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                           />
                           <Input
                             placeholder="CVV"
-                            className={`rounded-xl ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
+                            className={`rounded-xl font-semibold ${darkMode ? "bg-gray-700 border-gray-600 focus:ring-purple-500" : "border-gray-300 focus:ring-rose-500"}`}
                           />
                         </div>
-                        <Button className="w-full bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white text-lg font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                        <Button className="w-full bg-gradient-to-r from-rose-600 to-purple-600 hover:from-rose-700 hover:to-purple-700 text-white text-xl font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
                           <Plus className="h-5 w-5 mr-2" /> Add Payment
                         </Button>
                       </div>
@@ -884,11 +884,11 @@ export default function AccountPage() {
                   className={`${darkMode ? "bg-gray-800/90" : "bg-white/90"} backdrop-blur-lg border-none shadow-2xl rounded-3xl transition-all duration-300 hover:shadow-rose-400/30`}
                 >
                   <CardHeader>
-                    <CardTitle className="text-3xl font-bold">
+                    <CardTitle className="text-4xl font-bold">
                       Account Preferences
                     </CardTitle>
                     <CardDescription
-                      className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                      className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                     >
                       Customize your experience
                     </CardDescription>
@@ -900,7 +900,7 @@ export default function AccountPage() {
                           Email Notifications
                         </h3>
                         <p
-                          className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                          className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                         >
                           Receive order updates and promotions
                         </p>
@@ -915,7 +915,7 @@ export default function AccountPage() {
                       <div>
                         <h3 className="text-xl font-semibold">SMS Alerts</h3>
                         <p
-                          className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                          className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                         >
                           Get instant updates on your phone
                         </p>
@@ -927,7 +927,7 @@ export default function AccountPage() {
                       <div>
                         <h3 className="text-xl font-semibold">Dark Mode</h3>
                         <p
-                          className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                          className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                         >
                           Toggle dark theme
                         </p>
@@ -945,12 +945,12 @@ export default function AccountPage() {
                           Delete Account
                         </h3>
                         <p
-                          className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+                          className={`text-xl font-semibold ${darkMode ? "text-gray-400" : "text-gray-600"}`}
                         >
                           Permanently delete your account
                         </p>
                       </div>
-                      <Button variant="destructive" className="rounded-xl">
+                      <Button variant="destructive" className="rounded-xl text-lg font-semibold">
                         Delete
                       </Button>
                     </div>
